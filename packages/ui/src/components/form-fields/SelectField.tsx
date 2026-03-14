@@ -1,0 +1,96 @@
+import { cn } from "@workspace/ui/lib/utils";
+import { Control, Controller, FieldValues, Path } from "react-hook-form";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@workspace/ui/components/select";
+import { useId } from "react";
+import {
+  Field,
+  FieldDescription,
+  FieldError,
+  FieldLabel,
+} from "@workspace/ui/components/field";
+import { Asterisk, Info } from "lucide-react";
+
+interface SelectFieldProps<TFieldValues extends FieldValues> {
+  name: Path<TFieldValues>;
+  control: Control<TFieldValues>;
+  className?: string;
+  label?: string;
+  description?: string;
+  requiredField?: boolean;
+  placeholder?: string;
+  selectValues: { value: string; label: string }[];
+  disabled?: boolean;
+  isDescriptionInfoIconShow?: boolean;
+}
+
+function SelectField<TFieldValues extends FieldValues>({
+  control,
+  name,
+  className,
+  selectValues,
+  label,
+  placeholder,
+  description,
+  requiredField = false,
+  isDescriptionInfoIconShow = false,
+  disabled,
+}: SelectFieldProps<TFieldValues>) {
+  const fieldId = useId();
+  return (
+    <Controller
+      name={name}
+      control={control}
+      render={({ field, fieldState }) => (
+        <Field data-invalid={fieldState.invalid}>
+          {label && (
+            <FieldLabel htmlFor={fieldId} aria-disabled={disabled}>
+              {label}
+              {requiredField && (
+                <Asterisk className="text-destructive -mt-2 size-3" />
+              )}
+            </FieldLabel>
+          )}
+          <Select
+            name={field.name}
+            value={field.value}
+            onValueChange={field.onChange}
+          >
+            <SelectTrigger
+              id={fieldId}
+              aria-invalid={fieldState.invalid}
+              className={cn("w-full", className)}
+              disabled={disabled}
+            >
+              <SelectValue placeholder={placeholder} />
+            </SelectTrigger>
+            <SelectContent>
+              {selectValues.map(({ value, label }) => (
+                <SelectItem key={`${name}.${value}`} value={value}>
+                  {label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          {description && (
+            <FieldDescription
+              className="flex items-start gap-1.5"
+              aria-disabled={disabled}
+            >
+              {isDescriptionInfoIconShow && <Info className="mt-0.5 size-4" />}
+              {description}
+            </FieldDescription>
+          )}
+          {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+        </Field>
+      )}
+    />
+  );
+}
+
+export { SelectField };
