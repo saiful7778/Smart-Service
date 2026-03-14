@@ -4,6 +4,7 @@ import "@workspace/ui/globals.css"
 import { ThemeProvider } from "@/components/providers/theme-provider"
 import { type Metadata } from "next"
 import { env } from "@/configs/env.config"
+import { Toaster } from "react-hot-toast"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 
@@ -74,6 +75,16 @@ export default function RootLayout({
     >
       <body>
         <ThemeProvider>{children}</ThemeProvider>
+        <Toaster
+          position="top-center"
+          reverseOrder={true}
+          gutter={6}
+          toastOptions={{
+            duration: 3000,
+            removeDelay: 2000,
+            className: "__react-hot-toast",
+          }}
+        />
       </body>
     </html>
   )

@@ -166,3 +166,15 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .link {
+    @apply transition-all duration-300 hover:text-primary hover:underline;
+  }
+}
+
+@layer components {
+  .__react-hot-toast {
+    @apply rounded-lg! bg-popover! text-popover-foreground!;
+  }
+}
