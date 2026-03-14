@@ -16,7 +16,9 @@
     "lint": "turbo lint",
     "format": "turbo format",
     "typecheck": "turbo typecheck",
-    "clean": "bash ./scripts/clean.sh"
+    "clean": "bash ./scripts/clean.sh",
+    "docker-dev:up": "docker compose -f ./infra/docker/docker-compose-dev.yml up -d",
+    "docker-dev:down": "docker compose -f ./infra/docker/docker-compose-dev.yml down"
   },
   "devDependencies": {
     "@workspace/eslint-config": "workspace:*",
