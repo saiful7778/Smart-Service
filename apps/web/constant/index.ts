@@ -1,3 +1,4 @@
+import { BreadcrumbRoute } from "@/types"
 import type { RouteType } from "next/dist/lib/load-custom-routes"
 
 export const DEFAULT_AUTH_PATH: __next_route_internal_types__.RouteImpl<RouteType> =
@@ -20,3 +21,26 @@ export const PUBLIC_ROUTES: Array<
 > = [...AUTH_ROUTES, "/"]
 
 export const MAX_PROFILE_IMAGE_SIZE = 5 * 1024 * 1024 // 5 MB
+
+export const breadcrumbRoutes: Array<BreadcrumbRoute> = [
+  {
+    title: "Dashboard",
+    path: "/dashboard",
+    children: [
+      {
+        title: "All Users",
+        path: "/dashboard/super-admin/users",
+      },
+      {
+        title: "Settings",
+        path: "/dashboard/settings",
+        children: [
+          {
+            title: "Profile",
+            path: "/dashboard/settings/profile",
+          },
+        ],
+      },
+    ],
+  },
+]

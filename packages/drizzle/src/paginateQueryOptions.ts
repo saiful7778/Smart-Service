@@ -29,9 +29,6 @@ export interface PaginateQueryOptions {
 
   /** Additional filter object — { fieldName: value } pairs */
   filter?: Record<string, unknown>
-
-  /** Field names to select — resolved via tableColumns */
-  select?: string[]
 }
 
 export interface PaginationMeta {
@@ -80,8 +77,6 @@ export interface PaginationMeta {
 export interface PaginateResult {
   where: SQL | undefined
   orderBy: SQL | undefined
-  select: Record<string, PgColumn> | undefined
-  columns: Record<string, true> | undefined
   limit: number
   offset: number
   page: number
@@ -184,35 +179,6 @@ function buildOrderBy(
   return order === "asc" ? asc(col) : desc(col)
 }
 
-function buildSelect(
-  selectFields: string[] | undefined,
-  tableColumns: TableColumns
-) {
-  if (!selectFields || selectFields.length === 0) return undefined
-
-  const select = Object.fromEntries(
-    selectFields.flatMap((f) => {
-      const col = getColumn(tableColumns, f)
-      return col ? [[f, col]] : []
-    })
-  )
-
-  if (Object.keys(select).length === 0) return undefined
-
-  return select
-}
-
-function buildColumnsField(
-  columnFields: string[] | undefined
-): Record<string, true> | undefined {
-  if (!columnFields || columnFields.length === 0) return undefined
-
-  return {
-    id: true,
-    ...Object.fromEntries(columnFields.map((key) => [key, true])),
-  }
-}
-
 /**
  * Calculate pagination metadata based on total count
  */
@@ -280,7 +246,6 @@ export function buildPaginateOptions(
     search,
     searchFields,
     filter,
-    select,
   } = options
 
   const pageValue = Math.max(1, Number(page))
@@ -295,15 +260,9 @@ export function buildPaginateOptions(
 
   const orderBy = buildOrderBy(orderField, order, tableColumns)
 
-  const resolvedSelect = buildSelect(select, tableColumns)
-
-  const columns = buildColumnsField(select)
-
   return {
     where,
     orderBy,
-    columns,
-    select: resolvedSelect,
     limit: limitValue,
     offset,
     page: pageValue,

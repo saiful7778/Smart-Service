@@ -22,6 +22,7 @@ import { nextCookies } from "better-auth/next-js"
 import { ERROR_PAGE_PATH } from "@/constant"
 import { accessControl } from "./accessControl"
 import { UserRoleEnumSchema } from "@workspace/drizzle/client-enums"
+import { mailProvider } from "../mail"
 
 function createBetterAuth() {
   const defaultPlugins: Array<BetterAuthPlugin> = []
@@ -133,8 +134,21 @@ function createBetterAuth() {
       sendOnSignUp: true,
       expiresIn: 60 * 60,
       autoSignInAfterVerification: true,
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      sendVerificationEmail: async ({ user, url }) => {},
+      sendVerificationEmail: async ({ user, url }) => {
+        const { html, subject, text, to } =
+          await mailProvider.createEmailVerificationMail({
+            to: user.email,
+            verifyUrl: url,
+            userName: user.name,
+          })
+
+        await mailProvider.sendMail({
+          html,
+          subject,
+          text,
+          to,
+        })
+      },
     },
     emailAndPassword: {
       enabled: true,
@@ -143,9 +157,20 @@ function createBetterAuth() {
       autoSignIn: false,
       requireEmailVerification: true,
       resetPasswordTokenExpiresIn: 60 * 60,
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       sendResetPassword: async ({ user, url }) => {
-        console.log({ url })
+        const { subject, to, html, text } =
+          await mailProvider.createPasswordResetMail({
+            to: user.email,
+            resetUrl: url,
+            userName: user.name,
+          })
+
+        await mailProvider.sendMail({
+          html,
+          subject,
+          text,
+          to,
+        })
       },
     },
     plugins: [

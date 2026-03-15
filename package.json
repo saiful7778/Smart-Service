@@ -31,5 +31,10 @@
   "packageManager": "pnpm@10.32.1",
   "engines": {
     "node": ">=20"
+  },
+  "pnpm": {
+    "overrides": {
+      "@react-email/body": "0.2.1"
+    }
   }
 }

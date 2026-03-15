@@ -8,7 +8,8 @@
       "@workspace/drizzle": ["../../packages/ui/src/index.ts"],
       "@workspace/client-enums": [
         "../../packages/ui/src/schemas/enums/zod-enums.ts"
-      ]
+      ],
+      "@workspace/lib": ["../../packages/lib/src/index.ts"]
     },
     "plugins": [
       {

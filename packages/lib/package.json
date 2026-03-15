@@ -1,0 +1,35 @@
+{
+  "name": "@workspace/lib",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "author": "Saiful Islam <saiful.islam.rafi.88@gmail.com>",
+  "contributors": [
+    {
+      "name": "Saiful Islam",
+      "email": "saiful.islam.rafi.88@gmail.com"
+    }
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "email:dev": "email dev --dir=\"./src/services/mail/templates/\" --port=8088",
+    "lint": "eslint ./src --max-warnings 0"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "peerDependencies": {
+    "@types/node": "24",
+    "zod": ">=4"
+  },
+  "devDependencies": {
+    "@turbo/gen": "^2.8.1",
+    "@workspace/eslint-config": "workspace:*",
+    "@workspace/typescript-config": "workspace:*",
+    "dotenv": "^17.2.4",
+    "eslint": "^9.39.2",
+    "typescript": "^5.9.3"
+  }
+}

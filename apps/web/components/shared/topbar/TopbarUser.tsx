@@ -1,0 +1,105 @@
+"use client"
+
+import { LogOut, UserRoundCog } from "lucide-react"
+import toast from "react-hot-toast"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@workspace/ui/components/dropdown-menu"
+import { Button } from "@workspace/ui/components/button"
+import { UserAvatar } from "@/components/UserAvatar"
+import Link from "next/link"
+import { authClient } from "@/lib/better-auth/auth-client"
+import { DEFAULT_UNAUTH_PATH } from "@/constant"
+import { usePathname, useRouter } from "next/navigation"
+import { useAuthStore } from "@/stores/zustand/auth/AuthStoreContext"
+
+export function TopbarUser() {
+  const router = useRouter()
+  const pathname = usePathname()
+
+  const user = useAuthStore((state) => state.user!)
+
+  const handleLogout = async () => {
+    const toastId = "sign_out_toast_message"
+
+    await authClient.signOut({
+      fetchOptions: {
+        onRequest: () => {
+          toast.loading("Logging out...", { id: toastId })
+        },
+        onSuccess: () => {
+          toast.success("Logged out successfully", {
+            id: toastId,
+          })
+          router.push(`${DEFAULT_UNAUTH_PATH}?redirect=${pathname}`)
+        },
+        onError: () => {
+          toast.error("Failed to log out. Please try again", {
+            id: toastId,
+          })
+        },
+      },
+    })
+  }
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger
+        render={
+          <Button variant="ghost" size="icon">
+            <UserAvatar
+              userEmail={user.email}
+              imageUrl={user?.image}
+              userName={user.name}
+              isActive
+            />
+          </Button>
+        }
+      >
+        open
+      </DropdownMenuTrigger>
+      <DropdownMenuContent
+        className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
+        side="bottom"
+        align="end"
+      >
+        <DropdownMenuGroup>
+          <DropdownMenuLabel className="p-0 font-normal">
+            <UserAvatar
+              className="px-1 py-1.5"
+              userEmail={user.email}
+              imageUrl={user?.image}
+              userName={user.name}
+              showDetails
+              isActive
+            />
+          </DropdownMenuLabel>
+        </DropdownMenuGroup>
+        <DropdownMenuSeparator />
+        <DropdownMenuGroup>
+          <DropdownMenuItem
+            render={
+              <Link href={{ pathname: "/dashboard/settings/profile" }}>
+                <UserRoundCog />
+                <span>Profile setting</span>
+              </Link>
+            }
+          />
+        </DropdownMenuGroup>
+        <DropdownMenuSeparator />
+        <DropdownMenuGroup>
+          <DropdownMenuItem variant="destructive" onClick={handleLogout}>
+            <LogOut />
+            <span>Log out</span>
+          </DropdownMenuItem>
+        </DropdownMenuGroup>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  )
+}

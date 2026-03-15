@@ -14,7 +14,7 @@ config({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  transpilePackages: ["@workspace/ui", "@workspace/drizzle"],
+  transpilePackages: ["@workspace/ui", "@workspace/drizzle", "@workspace/lib"],
   typedRoutes: true,
   reactCompiler: true,
 }
