@@ -1,16 +1,16 @@
-"use client"
+"use client";
 
-import { usePathname } from "next/navigation"
+import { usePathname } from "next/navigation";
 import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@workspace/ui/components/sidebar"
-import Link from "next/link"
-import { footerMenuLinks } from "@/constant/sidebarLinks"
+} from "@workspace/ui/components/sidebar";
+import Link from "next/link";
+import { footerMenuLinks } from "@/constant/sidebarLinks";
 
 export function SidebarFooterMenu() {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   return (
     <SidebarMenu>
@@ -31,5 +31,5 @@ export function SidebarFooterMenu() {
         </SidebarMenuItem>
       ))}
     </SidebarMenu>
-  )
+  );
 }

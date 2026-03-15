@@ -1,4 +1,4 @@
-import { type Metadata } from "next"
+import { type Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Accept Invitation",
@@ -6,8 +6,8 @@ export const metadata: Metadata = {
     index: false,
     follow: false,
   },
-}
+};
 
 export default function AcceptInvitationPage() {
-  return <div>AcceptInvitation</div>
+  return <div>AcceptInvitation</div>;
 }

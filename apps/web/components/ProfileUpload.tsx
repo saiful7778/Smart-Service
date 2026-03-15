@@ -1,30 +1,30 @@
-"use client"
+"use client";
 
-import { CircleUserRoundIcon, XIcon } from "lucide-react"
-import { useFileUpload } from "@/hooks/use-file-upload"
-import { useCallback, useEffect, useMemo, useRef } from "react"
-import { Button } from "@workspace/ui/components/button"
-import Image from "next/image"
-import { cn } from "@workspace/ui/lib/utils"
-import { MAX_PROFILE_IMAGE_SIZE } from "@/constant"
+import { CircleUserRoundIcon, XIcon } from "lucide-react";
+import { useFileUpload } from "@/hooks/use-file-upload";
+import { useCallback, useEffect, useMemo, useRef } from "react";
+import { Button } from "@workspace/ui/components/button";
+import Image from "next/image";
+import { cn } from "@workspace/ui/lib/utils";
+import { MAX_PROFILE_IMAGE_SIZE } from "@/constant";
 
 interface ProfileUploadProps {
   /** Controlled value: existing URL string, a File object, or null */
-  value: string | File | null
+  value: string | File | null;
   /** Called with the new File on selection, or null on removal */
-  onChange: (file: File | null) => void
+  onChange: (file: File | null) => void;
   /** Disable the control */
-  disabled?: boolean
+  disabled?: boolean;
   /** Show a loading spinner (e.g. while uploading) */
-  loading?: boolean
+  loading?: boolean;
   /** Max file size in bytes (default: 5 MB) */
-  maxSizeBytes?: number
+  maxSizeBytes?: number;
   /** Additional accepted MIME types (default: image/*) */
-  accept?: string
+  accept?: string;
   /** Accessible label for the upload button */
-  ariaLabel?: string
+  ariaLabel?: string;
   /** Optional class for the wrapper */
-  className?: string
+  className?: string;
 }
 
 export function ProfileUpload({
@@ -51,76 +51,76 @@ export function ProfileUpload({
   ] = useFileUpload({
     accept,
     multiple: false,
-  })
+  });
 
   const validateFile = useCallback(
     (file: File): string | null => {
       if (!file.type.startsWith("image/"))
-        return "Only image files are allowed."
+        return "Only image files are allowed.";
       if (file.size > maxSizeBytes)
-        return `File is too large. Max size is ${(maxSizeBytes / 1024 / 1024).toFixed(0)} MB.`
-      return null
+        return `File is too large. Max size is ${(maxSizeBytes / 1024 / 1024).toFixed(0)} MB.`;
+      return null;
     },
     [maxSizeBytes]
-  )
+  );
 
   // Store URL object to revoke on cleanup
-  const objectUrlRef = useRef<string | null>(null)
+  const objectUrlRef = useRef<string | null>(null);
 
   // Compute preview URL from uploaded file or value
   const previewUrl = useMemo(() => {
     if (files.length > 0) {
-      return files[0]!.preview
+      return files[0]!.preview;
     }
     if (value instanceof File) {
-      const url = URL.createObjectURL(value)
+      const url = URL.createObjectURL(value);
       // eslint-disable-next-line react-hooks/refs
-      objectUrlRef.current = url
-      return url
+      objectUrlRef.current = url;
+      return url;
     }
-    if (typeof value === "string") return value
-    return null
-  }, [files, value])
+    if (typeof value === "string") return value;
+    return null;
+  }, [files, value]);
 
   // Revoke object URL on unmount or value change
   useEffect(() => {
     return () => {
       if (objectUrlRef.current) {
-        URL.revokeObjectURL(objectUrlRef.current)
-        objectUrlRef.current = null
+        URL.revokeObjectURL(objectUrlRef.current);
+        objectUrlRef.current = null;
       }
-    }
-  }, [previewUrl])
+    };
+  }, [previewUrl]);
 
   // Update form value on file change
   useEffect(() => {
     if (files.length > 0) {
-      onChange((files[0]!.file as File) ?? null)
+      onChange((files[0]!.file as File) ?? null);
     }
-  }, [files, onChange])
+  }, [files, onChange]);
 
   const handleRemove = useCallback(() => {
-    if (files.length > 0) removeFile(files[0]!.id)
-    onChange(null)
-  }, [files, onChange, removeFile])
+    if (files.length > 0) removeFile(files[0]!.id);
+    onChange(null);
+  }, [files, onChange, removeFile]);
 
   useEffect(() => {
-    if (files.length === 0) return
+    if (files.length === 0) return;
 
-    const file = files[0]!.file as File
-    const validationError = validateFile(file)
+    const file = files[0]!.file as File;
+    const validationError = validateFile(file);
 
     if (validationError) {
-      console.log(validationError)
-      handleRemove()
-      return
+      console.log(validationError);
+      handleRemove();
+      return;
     }
 
-    onChange(file)
-  }, [files, onChange, validateFile, handleRemove])
+    onChange(file);
+  }, [files, onChange, validateFile, handleRemove]);
 
-  const hasImage = !!previewUrl
-  const isInteractive = !disabled && !loading
+  const hasImage = !!previewUrl;
+  const isInteractive = !disabled && !loading;
 
   return (
     <div className={cn("relative inline-flex size-44!", className)}>
@@ -180,5 +180,5 @@ export function ProfileUpload({
         disabled={disabled}
       />
     </div>
-  )
+  );
 }

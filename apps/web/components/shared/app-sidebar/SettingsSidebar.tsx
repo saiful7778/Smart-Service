@@ -1,17 +1,17 @@
-"use client"
+"use client";
 
-import { settingsMenuLinks } from "@/constant/sidebarLinks"
+import { settingsMenuLinks } from "@/constant/sidebarLinks";
 import {
   SidebarGroup,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@workspace/ui/components/sidebar"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
+} from "@workspace/ui/components/sidebar";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export function SettingsSidebar() {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   return (
     <aside className="lg:w-1/5">
@@ -33,5 +33,5 @@ export function SettingsSidebar() {
         </SidebarMenu>
       </SidebarGroup>
     </aside>
-  )
+  );
 }

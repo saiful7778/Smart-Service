@@ -4,11 +4,11 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@workspace/ui/components/card"
-import ForgetPasswordForm from "@/features/auth/components/forms/ForgetPasswordForm"
-import { ArrowLeft } from "lucide-react"
-import { type Metadata } from "next"
-import Link from "next/link"
+} from "@workspace/ui/components/card";
+import ForgetPasswordForm from "@/features/auth/components/forms/ForgetPasswordForm";
+import { ArrowLeft } from "lucide-react";
+import { type Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Forget Password",
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     index: false,
     follow: false,
   },
-}
+};
 
 export default function ForgetPasswordPage() {
   return (
@@ -36,5 +36,5 @@ export default function ForgetPasswordPage() {
         <ForgetPasswordForm />
       </CardContent>
     </Card>
-  )
+  );
 }

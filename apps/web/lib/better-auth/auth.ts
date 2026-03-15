@@ -1,31 +1,31 @@
-import "server-only"
+import "server-only";
 
-import { env } from "@/configs/env.config"
-import { drizzleAdapter } from "@better-auth/drizzle-adapter"
-import { betterAuth, type BetterAuthPlugin } from "better-auth"
+import { env } from "@/configs/env.config";
+import { drizzleAdapter } from "@better-auth/drizzle-adapter";
+import { betterAuth, type BetterAuthPlugin } from "better-auth";
 import {
   type AccessControl,
   admin,
   haveIBeenPwned,
   oneTap,
   openAPI,
-} from "better-auth/plugins"
-import { db } from "../db"
+} from "better-auth/plugins";
+import { db } from "../db";
 import {
   AccountTable,
   SessionTable,
   UserTable,
   VerificationTable,
-} from "@workspace/drizzle"
-import { createAuthMiddleware } from "better-auth/api"
-import { nextCookies } from "better-auth/next-js"
-import { ERROR_PAGE_PATH } from "@/constant"
-import { accessControl } from "./accessControl"
-import { UserRoleEnumSchema } from "@workspace/drizzle/client-enums"
-import { mailProvider } from "../mail"
+} from "@workspace/drizzle";
+import { createAuthMiddleware } from "better-auth/api";
+import { nextCookies } from "better-auth/next-js";
+import { ERROR_PAGE_PATH } from "@/constant";
+import { accessControl } from "./accessControl";
+import { UserRoleEnumSchema } from "@workspace/drizzle/client-enums";
+import { mailProvider } from "../mail";
 
 function createBetterAuth() {
-  const defaultPlugins: Array<BetterAuthPlugin> = []
+  const defaultPlugins: Array<BetterAuthPlugin> = [];
 
   if (env.NODE_ENV === "production") {
     defaultPlugins.push(
@@ -33,7 +33,7 @@ function createBetterAuth() {
         customPasswordCompromisedMessage:
           "This password is compromised, choose a stronger one",
       })
-    )
+    );
   }
 
   return betterAuth({
@@ -62,7 +62,7 @@ function createBetterAuth() {
               data: {
                 ...session,
               },
-            }
+            };
           },
         },
       },
@@ -74,9 +74,9 @@ function createBetterAuth() {
           const user = ctx.context.newSession?.user ?? {
             name: ctx.body.name,
             email: ctx.body.email,
-          }
+          };
           if (user != null) {
-            console.log("User Signup", user)
+            console.log("User Signup", user);
           }
         }
       }),
@@ -100,7 +100,7 @@ function createBetterAuth() {
           return {
             role: UserRoleEnumSchema.enum.USER,
             displayRole: "User",
-          }
+          };
         },
       },
     },
@@ -140,14 +140,14 @@ function createBetterAuth() {
             to: user.email,
             verifyUrl: url,
             userName: user.name,
-          })
+          });
 
         await mailProvider.sendMail({
           html,
           subject,
           text,
           to,
-        })
+        });
       },
     },
     emailAndPassword: {
@@ -163,14 +163,14 @@ function createBetterAuth() {
             to: user.email,
             resetUrl: url,
             userName: user.name,
-          })
+          });
 
         await mailProvider.sendMail({
           html,
           subject,
           text,
           to,
-        })
+        });
       },
     },
     plugins: [
@@ -187,7 +187,7 @@ function createBetterAuth() {
       oneTap(),
       nextCookies(),
     ],
-  })
+  });
 }
 
-export const auth = createBetterAuth()
+export const auth = createBetterAuth();

@@ -1,22 +1,22 @@
-"use client"
+"use client";
 
-import { GoogleIcon } from "@/assets/icons"
-import { DEFAULT_AUTH_PATH, SUPPORTED_OAUTH_PROVIDERS } from "@/constant"
-import { auth } from "@/lib/better-auth/auth"
-import { authClient } from "@/lib/better-auth/auth-client"
-import { ButtonSpinner } from "@workspace/ui/components/button-spinner"
-import { Card, CardContent } from "@workspace/ui/components/card"
-import { Plus, Shield, Trash2 } from "lucide-react"
-import { useRouter } from "next/navigation"
-import { ComponentProps, ElementType, useState } from "react"
-import toast from "react-hot-toast"
+import { GoogleIcon } from "@/assets/icons";
+import { DEFAULT_AUTH_PATH, SUPPORTED_OAUTH_PROVIDERS } from "@/constant";
+import { auth } from "@/lib/better-auth/auth";
+import { authClient } from "@/lib/better-auth/auth-client";
+import { ButtonSpinner } from "@workspace/ui/components/button-spinner";
+import { Card, CardContent } from "@workspace/ui/components/card";
+import { Plus, Shield, Trash2 } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { ComponentProps, ElementType, useState } from "react";
+import toast from "react-hot-toast";
 
-type Account = Awaited<ReturnType<typeof auth.api.listUserAccounts>>[number]
+type Account = Awaited<ReturnType<typeof auth.api.listUserAccounts>>[number];
 
 export default function LinkingApps({
   currentAccounts,
 }: {
-  currentAccounts: Account[]
+  currentAccounts: Account[];
 }) {
   return (
     <div className="space-y-6">
@@ -54,66 +54,66 @@ export default function LinkingApps({
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-type SupportedOAuthProvider = (typeof SUPPORTED_OAUTH_PROVIDERS)[number]
+type SupportedOAuthProvider = (typeof SUPPORTED_OAUTH_PROVIDERS)[number];
 
 const SUPPORTED_OAUTH_PROVIDER_DETAILS: Record<
   SupportedOAuthProvider,
   { name: string; Icon: ElementType<ComponentProps<"svg">> }
 > = {
   google: { name: "Google", Icon: GoogleIcon },
-}
+};
 
 function AccountCard({
   provider,
   account,
 }: {
-  provider: string
-  account?: Account
+  provider: string;
+  account?: Account;
 }) {
-  const [isLoading, setIsLoading] = useState(false)
-  const router = useRouter()
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const providerDetails = SUPPORTED_OAUTH_PROVIDER_DETAILS[
     provider as SupportedOAuthProvider
   ] ?? {
     name: provider,
     Icon: Shield,
-  }
+  };
 
   function linkAccount() {
-    const toastId = "link_account_toast_message"
+    const toastId = "link_account_toast_message";
 
     return authClient.linkSocial({
       provider,
       callbackURL: DEFAULT_AUTH_PATH,
       fetchOptions: {
         onRequest: () => {
-          setIsLoading(true)
+          setIsLoading(true);
           toast.loading("Linking account...", {
             id: toastId,
-          })
+          });
         },
         onSuccess: () => {
-          setIsLoading(false)
-          router.refresh()
+          setIsLoading(false);
+          router.refresh();
         },
         onError: ({ error }) => {
-          setIsLoading(false)
-          toast.error(error.message, { id: toastId })
+          setIsLoading(false);
+          toast.error(error.message, { id: toastId });
         },
       },
-    })
+    });
   }
 
   function unlinkAccount() {
-    const toastId = "unlink_account_toast_message"
+    const toastId = "unlink_account_toast_message";
 
     if (account == null) {
-      toast.error("Account not found", { id: toastId })
-      return
+      toast.error("Account not found", { id: toastId });
+      return;
     }
 
     return authClient.unlinkAccount(
@@ -123,22 +123,22 @@ function AccountCard({
       },
       {
         onRequest: () => {
-          setIsLoading(true)
+          setIsLoading(true);
           toast.loading("Unlinking account...", {
             id: toastId,
-          })
+          });
         },
         onSuccess: () => {
-          setIsLoading(false)
-          toast.success("Account unlinked", { id: toastId })
-          router.refresh()
+          setIsLoading(false);
+          toast.success("Account unlinked", { id: toastId });
+          router.refresh();
         },
         onError: ({ error }) => {
-          setIsLoading(false)
-          toast.error(error.message, { id: toastId })
+          setIsLoading(false);
+          toast.error(error.message, { id: toastId });
         },
       }
-    )
+    );
   }
 
   return (
@@ -184,5 +184,5 @@ function AccountCard({
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }

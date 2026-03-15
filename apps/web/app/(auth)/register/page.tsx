@@ -5,12 +5,12 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@workspace/ui/components/card"
-import RegisterForm from "@/features/auth/components/forms/RegisterForm"
-import SocialAuth from "@/features/auth/components/SocialAuth"
-import { type Metadata } from "next"
-import Link from "next/link"
-import { DEFAULT_AUTH_PATH } from "@/constant"
+} from "@workspace/ui/components/card";
+import RegisterForm from "@/features/auth/components/forms/RegisterForm";
+import SocialAuth from "@/features/auth/components/SocialAuth";
+import { type Metadata } from "next";
+import Link from "next/link";
+import { DEFAULT_AUTH_PATH } from "@/constant";
 
 export const metadata: Metadata = {
   title: "Register",
@@ -18,13 +18,13 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
-}
+};
 
 export default async function RegisterPage(props: PageProps<"/register">) {
-  const searchParams = await props.searchParams
+  const searchParams = await props.searchParams;
 
   const redirectUrl =
-    (searchParams?.redirect as string | undefined) ?? DEFAULT_AUTH_PATH
+    (searchParams?.redirect as string | undefined) ?? DEFAULT_AUTH_PATH;
 
   return (
     <Card>
@@ -50,5 +50,5 @@ export default async function RegisterPage(props: PageProps<"/register">) {
         </div>
       </CardFooter>
     </Card>
-  )
+  );
 }

@@ -1,11 +1,11 @@
-import { EmailButton } from "@/components/email/EmailButton"
-import { EmailLayout } from "@/components/email/EmailLayout"
-import { Link, Section, Text } from "@react-email/components"
+import { EmailButton } from "@/components/email/EmailButton";
+import { EmailLayout } from "@/components/email/EmailLayout";
+import { Link, Section, Text } from "@react-email/components";
 
 interface EmailVerificationMailProps {
-  userName: string
-  verifyUrl: string
-  appName: string
+  userName: string;
+  verifyUrl: string;
+  appName: string;
 }
 
 export default function EmailVerificationMail({
@@ -42,11 +42,11 @@ export default function EmailVerificationMail({
         If you did not create this account, you can safely ignore this email.
       </Text>
     </EmailLayout>
-  )
+  );
 }
 
 EmailVerificationMail.PreviewProps = {
   userName: "John Doe",
   verifyUrl: "http://localhost:3000/api/auth/verify-email",
   appName: "Smart Service",
-} as EmailVerificationMailProps
+} as EmailVerificationMailProps;

@@ -1,30 +1,30 @@
-"use client"
+"use client";
 
-import { ProfileUpload } from "@/components/ProfileUpload"
-import { authClient } from "@/lib/better-auth/auth-client"
-import { useAuthStore } from "@/stores/zustand/auth/AuthStoreContext"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { ButtonSpinner } from "@workspace/ui/components/button-spinner"
+import { ProfileUpload } from "@/components/ProfileUpload";
+import { authClient } from "@/lib/better-auth/auth-client";
+import { useAuthStore } from "@/stores/zustand/auth/AuthStoreContext";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { ButtonSpinner } from "@workspace/ui/components/button-spinner";
 import {
   Field,
   FieldDescription,
   FieldError,
   FieldGroup,
   FieldLabel,
-} from "@workspace/ui/components/field"
-import { InputField } from "@workspace/ui/components/form-fields/InputField"
-import { useRouter } from "next/navigation"
-import { useState } from "react"
-import { Controller, useForm } from "react-hook-form"
-import toast from "react-hot-toast"
-import { profileUpdateSchema, ProfileUpdateType } from "../../auth.schema"
+} from "@workspace/ui/components/field";
+import { InputField } from "@workspace/ui/components/form-fields/InputField";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import { profileUpdateSchema, ProfileUpdateType } from "../../auth.schema";
 
 export default function ProfileUpdateForm() {
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
 
-  const router = useRouter()
-  const user = useAuthStore((state) => state.user!)
-  const addUserData = useAuthStore((state) => state.addUserData)
+  const router = useRouter();
+  const user = useAuthStore((state) => state.user!);
+  const addUserData = useAuthStore((state) => state.addUserData);
 
   const form = useForm<ProfileUpdateType>({
     resolver: zodResolver(profileUpdateSchema),
@@ -33,39 +33,39 @@ export default function ProfileUpdateForm() {
       name: user?.name,
       email: user?.email,
     },
-  })
+  });
 
   const handleSubmit = async (e: ProfileUpdateType) => {
-    const toastId = "update_profile_toast_message"
+    const toastId = "update_profile_toast_message";
 
     if (user.name != e.name) {
       addUserData({
         ...user,
         name: e.name,
-      })
+      });
 
       return authClient.updateUser({
         name: e.name,
         fetchOptions: {
           onRequest: () => {
-            setIsLoading(true)
-            toast.loading("Updating profile...", { id: toastId })
+            setIsLoading(true);
+            toast.loading("Updating profile...", { id: toastId });
           },
           onSuccess: () => {
-            setIsLoading(false)
-            toast.success("Profile updated", { id: toastId })
-            router.refresh()
+            setIsLoading(false);
+            toast.success("Profile updated", { id: toastId });
+            router.refresh();
           },
           onError: ({ error }) => {
-            setIsLoading(false)
+            setIsLoading(false);
             toast.error(error.message || "Something went wrong", {
               id: toastId,
-            })
+            });
           },
         },
-      })
+      });
     }
-  }
+  };
 
   return (
     <form onSubmit={form.handleSubmit(handleSubmit)}>
@@ -117,5 +117,5 @@ export default function ProfileUpdateForm() {
         </ButtonSpinner>
       </FieldGroup>
     </form>
-  )
+  );
 }

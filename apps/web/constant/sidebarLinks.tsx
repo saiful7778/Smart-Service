@@ -1,14 +1,14 @@
-import { SidebarMenuLink } from "@/types"
+import { SidebarMenuLink } from "@/types";
 import {
   UserRoleEnumSchema,
   UserRoleEnumType,
-} from "@workspace/drizzle/client-enums"
-import { House, Settings, UsersRound } from "lucide-react"
+} from "@workspace/drizzle/client-enums";
+import { House, Settings } from "lucide-react";
 
 export const mainMenuLinks: Array<{
-  groupName: string
-  accessibleUserRoles: Array<UserRoleEnumType>
-  items: Array<SidebarMenuLink>
+  groupName: string;
+  accessibleUserRoles: Array<UserRoleEnumType>;
+  items: Array<SidebarMenuLink>;
 }> = [
   {
     groupName: "Dashboard",
@@ -25,18 +25,7 @@ export const mainMenuLinks: Array<{
       },
     ],
   },
-  {
-    groupName: "Super Admin",
-    accessibleUserRoles: [UserRoleEnumSchema.enum.SUPER_ADMIN],
-    items: [
-      {
-        title: "All Users",
-        icon: UsersRound,
-        path: "/dashboard/super-admin/users",
-      },
-    ],
-  },
-]
+];
 
 export const footerMenuLinks: Array<SidebarMenuLink> = [
   {
@@ -44,7 +33,7 @@ export const footerMenuLinks: Array<SidebarMenuLink> = [
     icon: Settings,
     path: "/dashboard/settings",
   },
-]
+];
 
 export const settingsMenuLinks: Array<{ title: string; path: string }> = [
   {
@@ -63,4 +52,4 @@ export const settingsMenuLinks: Array<{ title: string; path: string }> = [
     title: "Connected Apps",
     path: "/dashboard/settings/connected-apps",
   },
-]
+];

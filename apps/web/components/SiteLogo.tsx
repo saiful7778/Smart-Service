@@ -11,7 +11,7 @@ export default function SiteLogo() {
       }}
       className={cn("flex items-center gap-2 self-center font-semibold")}
     >
-      <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
+      <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
         <GalleryVerticalEnd className="size-4" />
       </div>
       <span>{env.NEXT_PUBLIC_SITE_NAME}</span>

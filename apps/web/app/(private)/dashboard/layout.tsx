@@ -1,8 +1,11 @@
-import { Metadata } from "next"
-import { SidebarInset, SidebarProvider } from "@workspace/ui/components/sidebar"
-import { AppSidebar } from "@/components/shared/app-sidebar/AppSidebar"
-import { Topbar } from "@/components/shared/topbar"
-import { env } from "@/configs/env.config"
+import { Metadata } from "next";
+import {
+  SidebarInset,
+  SidebarProvider,
+} from "@workspace/ui/components/sidebar";
+import { AppSidebar } from "@/components/shared/app-sidebar/AppSidebar";
+import { Topbar } from "@/components/shared/topbar";
+import { env } from "@/configs/env.config";
 
 export const metadata: Metadata = {
   title: {
@@ -15,7 +18,7 @@ export const metadata: Metadata = {
     index: false,
     follow: false,
   },
-}
+};
 
 export default async function DashboardLayout({
   children,
@@ -30,5 +33,5 @@ export default async function DashboardLayout({
         </main>
       </SidebarInset>
     </SidebarProvider>
-  )
+  );
 }

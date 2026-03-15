@@ -1,14 +1,14 @@
-"use client"
+"use client";
 
-import { env } from "@/configs/env.config"
+import { env } from "@/configs/env.config";
 import {
   adminClient,
   inferAdditionalFields,
   oneTapClient,
-} from "better-auth/client/plugins"
-import { createAuthClient } from "better-auth/react"
-import { accessControl } from "./accessControl"
-import type { auth } from "./auth"
+} from "better-auth/client/plugins";
+import { createAuthClient } from "better-auth/react";
+import { accessControl } from "./accessControl";
+import type { auth } from "./auth";
 
 export const authClient = createAuthClient({
   baseURL: env.NEXT_PUBLIC_SITE_URL,
@@ -22,4 +22,4 @@ export const authClient = createAuthClient({
       context: "signin",
     }),
   ],
-})
+});

@@ -1,7 +1,7 @@
-import { ThemeChanger } from "@/components/ThemeChanger"
-import { SidebarTrigger } from "@workspace/ui/components/sidebar"
-import { TopbarUser } from "./TopbarUser"
-import { AppBreadcrumb } from "../AppBreadcrumb"
+import { ThemeChanger } from "@/components/ThemeChanger";
+import { SidebarTrigger } from "@workspace/ui/components/sidebar";
+import { TopbarUser } from "./TopbarUser";
+import { AppBreadcrumb } from "../AppBreadcrumb";
 
 export function Topbar() {
   return (
@@ -15,5 +15,5 @@ export function Topbar() {
         <TopbarUser />
       </div>
     </header>
-  )
+  );
 }

@@ -1,7 +1,7 @@
-import { emailField, passwordField } from "@workspace/lib"
-import { env } from "@/configs/env.config"
-import z from "zod"
-import { MAX_PROFILE_IMAGE_SIZE } from "@/constant"
+import { emailField, passwordField } from "@workspace/lib";
+import { env } from "@/configs/env.config";
+import z from "zod";
+import { MAX_PROFILE_IMAGE_SIZE } from "@/constant";
 
 export const registerSchema = z
   .object({
@@ -21,8 +21,8 @@ export const registerSchema = z
   })
   .refine(({ password, confirmPassword }) => password === confirmPassword, {
     message: "Password and confirmPassword not matched",
-  })
-export type RegisterType = z.infer<typeof registerSchema>
+  });
+export type RegisterType = z.infer<typeof registerSchema>;
 
 export const loginSchema = z.object({
   email: emailField({ fieldName: "email" }),
@@ -31,18 +31,18 @@ export const loginSchema = z.object({
     restrict: env.NEXT_PUBLIC_NODE_ENV === "production",
   }),
   rememberMe: z.boolean().optional(),
-})
-export type LoginType = z.infer<typeof loginSchema>
+});
+export type LoginType = z.infer<typeof loginSchema>;
 
 export const magicLinkSchema = z.object({
   email: emailField({ fieldName: "email" }),
-})
-export type MagicLinkType = z.infer<typeof magicLinkSchema>
+});
+export type MagicLinkType = z.infer<typeof magicLinkSchema>;
 
 export const forgetPasswordSchema = z.object({
   email: emailField({ fieldName: "email" }),
-})
-export type ForgetPasswordType = z.infer<typeof forgetPasswordSchema>
+});
+export type ForgetPasswordType = z.infer<typeof forgetPasswordSchema>;
 
 export const resetPasswordSchema = z
   .object({
@@ -57,8 +57,8 @@ export const resetPasswordSchema = z
   })
   .refine(({ password, confirmPassword }) => password === confirmPassword, {
     message: "Password and confirmPassword not matched",
-  })
-export type ResetPasswordType = z.infer<typeof resetPasswordSchema>
+  });
+export type ResetPasswordType = z.infer<typeof resetPasswordSchema>;
 
 export const profileUpdateSchema = z.object({
   profileImage: z
@@ -85,8 +85,8 @@ export const profileUpdateSchema = z.object({
     .optional(),
   name: z.string(),
   email: emailField({ fieldName: "email" }),
-})
-export type ProfileUpdateType = z.infer<typeof profileUpdateSchema>
+});
+export type ProfileUpdateType = z.infer<typeof profileUpdateSchema>;
 
 export const updatePasswordSchema = z
   .object({
@@ -109,5 +109,5 @@ export const updatePasswordSchema = z
     {
       message: "Password and confirmPassword not matched",
     }
-  )
-export type UpdatePasswordType = z.infer<typeof updatePasswordSchema>
+  );
+export type UpdatePasswordType = z.infer<typeof updatePasswordSchema>;

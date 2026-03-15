@@ -1,15 +1,15 @@
-"use client"
+"use client";
 
-import { Button } from "@workspace/ui/components/button"
-import { AlertCircle, RefreshCw, Home } from "lucide-react"
-import Link from "next/link"
+import { Button } from "@workspace/ui/components/button";
+import { AlertCircle, RefreshCw, Home } from "lucide-react";
+import Link from "next/link";
 
 export default function Error({
   error,
   reset,
 }: {
-  error: Error & { digest?: string }
-  reset: () => void
+  error: Error & { digest?: string };
+  reset: () => void;
 }) {
   return (
     <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-linear-to-b from-background via-background to-muted/20">
@@ -66,5 +66,5 @@ export default function Error({
         </div>
       </div>
     </main>
-  )
+  );
 }

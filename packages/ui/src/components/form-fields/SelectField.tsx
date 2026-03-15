@@ -52,7 +52,7 @@ function SelectField<TFieldValues extends FieldValues>({
             <FieldLabel htmlFor={fieldId} aria-disabled={disabled}>
               {label}
               {requiredField && (
-                <Asterisk className="text-destructive -mt-2 size-3" />
+                <Asterisk className="-mt-2 size-3 text-destructive" />
               )}
             </FieldLabel>
           )}

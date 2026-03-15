@@ -1,3 +1,3 @@
-import { createMailFactory } from "@/services/mail/mail-factory"
+import { createMailFactory } from "@/services/mail/mail-factory";
 
-export const mailProvider = createMailFactory()
+export const mailProvider = createMailFactory();

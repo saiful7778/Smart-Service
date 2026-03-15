@@ -4,11 +4,11 @@ import { GalleryVerticalEnd } from "lucide-react";
 
 export default function Loading() {
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center">
-      <div className="w-full max-w-md mx-auto px-4">
+    <div className="flex min-h-screen items-center justify-center bg-background">
+      <div className="mx-auto w-full max-w-md px-4">
         {/* Logo/Brand */}
-        <div className="flex items-center justify-center flex-col gap-4 mb-12">
-          <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-20 items-center justify-center rounded-xl">
+        <div className="mb-12 flex flex-col items-center justify-center gap-4">
+          <div className="flex aspect-square size-20 items-center justify-center rounded-xl bg-sidebar-primary text-sidebar-primary-foreground">
             <GalleryVerticalEnd className="size-1/2" />
           </div>
           <h1 className="text-2xl font-bold text-foreground">
@@ -24,11 +24,11 @@ export default function Loading() {
           </div>
 
           {/* Loading message */}
-          <div className="text-center space-y-2">
-            <p className="text-foreground font-medium">
+          <div className="space-y-2 text-center">
+            <p className="font-medium text-foreground">
               Finding your perfect service
             </p>
-            <p className="text-xs text-muted-foreground text-center">
+            <p className="text-center text-xs text-muted-foreground">
               This may take a moment
             </p>
           </div>

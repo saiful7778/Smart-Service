@@ -1,9 +1,9 @@
-import { authErrors } from "@/constant/authErrors"
-import { Button } from "@workspace/ui/components/button"
-import { Card, CardContent, CardFooter } from "@workspace/ui/components/card"
-import { AlertCircle } from "lucide-react"
-import { type Metadata } from "next"
-import Link from "next/link"
+import { authErrors } from "@/constant/authErrors";
+import { Button } from "@workspace/ui/components/button";
+import { Card, CardContent, CardFooter } from "@workspace/ui/components/card";
+import { AlertCircle } from "lucide-react";
+import { type Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Error Page",
@@ -11,17 +11,17 @@ export const metadata: Metadata = {
     index: false,
     follow: false,
   },
-}
+};
 
 export default async function AuthErrorPage(props: PageProps<"/error">) {
-  const searchParams = await props.searchParams
+  const searchParams = await props.searchParams;
 
-  const error = searchParams.error as keyof typeof authErrors
+  const error = searchParams.error as keyof typeof authErrors;
 
   const errorInfo = authErrors[error] || {
     title: "Authentication Error",
     message: "An unexpected error occurred during authentication.",
-  }
+  };
 
   return (
     <Card>
@@ -47,5 +47,5 @@ export default async function AuthErrorPage(props: PageProps<"/error">) {
         />
       </CardFooter>
     </Card>
-  )
+  );
 }

@@ -1,11 +1,11 @@
-import { EmailButton } from "@/components/email/EmailButton"
-import { EmailLayout } from "@/components/email/EmailLayout"
-import { Link, Section, Text } from "@react-email/components"
+import { EmailButton } from "@/components/email/EmailButton";
+import { EmailLayout } from "@/components/email/EmailLayout";
+import { Link, Section, Text } from "@react-email/components";
 
 interface ResetPasswordMailProps {
-  userName: string
-  resetUrl: string
-  appName: string
+  userName: string;
+  resetUrl: string;
+  appName: string;
 }
 
 export default function ResetPasswordMail({
@@ -36,11 +36,11 @@ export default function ResetPasswordMail({
         If you did not request a password reset, you can ignore this email.
       </Text>
     </EmailLayout>
-  )
+  );
 }
 
 ResetPasswordMail.PreviewProps = {
   userName: "John Doe",
   resetUrl: "http://localhost:3000/api/auth/reset-password",
   appName: "Smart Service",
-} as ResetPasswordMailProps
+} as ResetPasswordMailProps;

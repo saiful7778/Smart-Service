@@ -1,42 +1,42 @@
-"use client"
+"use client";
 
-import { GoogleIcon } from "@/assets/icons"
-import { Button } from "@workspace/ui/components/button"
-import { Portal } from "@workspace/ui/components/portal"
-import { Spinner } from "@workspace/ui/components/spinner"
-import { authClient } from "@/lib/better-auth/auth-client"
-import { useEffect, useState } from "react"
-import toast from "react-hot-toast"
-import { ERROR_PAGE_PATH } from "@/constant"
+import { GoogleIcon } from "@/assets/icons";
+import { Button } from "@workspace/ui/components/button";
+import { Portal } from "@workspace/ui/components/portal";
+import { Spinner } from "@workspace/ui/components/spinner";
+import { authClient } from "@/lib/better-auth/auth-client";
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import { ERROR_PAGE_PATH } from "@/constant";
 
 export default function SocialAuth({ redirect }: { redirect: string }) {
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    ;(async () => {
+    (async () => {
       try {
         await authClient.oneTap({
           callbackURL: redirect,
           fetchOptions: {
             onRequest: () => {
-              setIsLoading(true)
+              setIsLoading(true);
             },
             onSuccess: () => {
-              setIsLoading(false)
+              setIsLoading(false);
             },
             onError: ({ error }) => {
-              toast.error(error.message)
-              setIsLoading(false)
+              toast.error(error.message);
+              setIsLoading(false);
             },
           },
-        })
+        });
       } catch (error) {
         toast.error(
           error instanceof Error ? error.message : "Error in OneTap Login"
-        )
+        );
       }
-    })()
-  }, [redirect])
+    })();
+  }, [redirect]);
 
   const handleGoogleLogin = async () =>
     authClient.signIn.social({
@@ -46,17 +46,17 @@ export default function SocialAuth({ redirect }: { redirect: string }) {
       errorCallbackURL: ERROR_PAGE_PATH,
       fetchOptions: {
         onRequest: () => {
-          setIsLoading(true)
+          setIsLoading(true);
         },
         onSuccess: () => {
-          setIsLoading(false)
+          setIsLoading(false);
         },
         onError: ({ error }) => {
-          toast.error(error.message)
-          setIsLoading(false)
+          toast.error(error.message);
+          setIsLoading(false);
         },
       },
-    })
+    });
 
   return (
     <>
@@ -87,5 +87,5 @@ export default function SocialAuth({ redirect }: { redirect: string }) {
         </Portal>
       )}
     </>
-  )
+  );
 }

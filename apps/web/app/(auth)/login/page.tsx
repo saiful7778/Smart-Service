@@ -5,12 +5,12 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@workspace/ui/components/card"
-import LoginForm from "@/features/auth/components/forms/LoginForm"
-import SocialAuth from "@/features/auth/components/SocialAuth"
-import { type Metadata } from "next"
-import Link from "next/link"
-import { DEFAULT_AUTH_PATH } from "@/constant"
+} from "@workspace/ui/components/card";
+import LoginForm from "@/features/auth/components/forms/LoginForm";
+import SocialAuth from "@/features/auth/components/SocialAuth";
+import { type Metadata } from "next";
+import Link from "next/link";
+import { DEFAULT_AUTH_PATH } from "@/constant";
 
 export const metadata: Metadata = {
   title: "Login",
@@ -18,13 +18,13 @@ export const metadata: Metadata = {
     index: false,
     follow: false,
   },
-}
+};
 
 export default async function LoginPage(props: PageProps<"/login">) {
-  const searchParams = await props.searchParams
+  const searchParams = await props.searchParams;
 
   const redirectUrl =
-    (searchParams?.redirect as string | undefined) ?? DEFAULT_AUTH_PATH
+    (searchParams?.redirect as string | undefined) ?? DEFAULT_AUTH_PATH;
 
   return (
     <Card>
@@ -52,5 +52,5 @@ export default async function LoginPage(props: PageProps<"/login">) {
         </div>
       </CardFooter>
     </Card>
-  )
+  );
 }

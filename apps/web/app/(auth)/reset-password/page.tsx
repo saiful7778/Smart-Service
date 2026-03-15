@@ -3,9 +3,9 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
-} from "@workspace/ui/components/card"
-import ResetPasswordForm from "@/features/auth/components/forms/ResetPasswordForm"
-import { type Metadata } from "next"
+} from "@workspace/ui/components/card";
+import ResetPasswordForm from "@/features/auth/components/forms/ResetPasswordForm";
+import { type Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Reset Password",
@@ -13,15 +13,15 @@ export const metadata: Metadata = {
     index: false,
     follow: false,
   },
-}
+};
 
 export default async function ResetPassword(
   props: PageProps<"/reset-password">
 ) {
-  const searchParams = await props.searchParams
+  const searchParams = await props.searchParams;
 
-  const error = searchParams?.error as string | undefined
-  const token = searchParams?.token as string | undefined
+  const error = searchParams?.error as string | undefined;
+  const token = searchParams?.token as string | undefined;
 
   if (error) {
     return (
@@ -32,7 +32,7 @@ export default async function ResetPassword(
           </div>
         </CardContent>
       </Card>
-    )
+    );
   }
 
   if (!token) {
@@ -44,7 +44,7 @@ export default async function ResetPassword(
           </div>
         </CardContent>
       </Card>
-    )
+    );
   }
 
   return (
@@ -56,5 +56,5 @@ export default async function ResetPassword(
         <ResetPasswordForm token={token} />
       </CardContent>
     </Card>
-  )
+  );
 }

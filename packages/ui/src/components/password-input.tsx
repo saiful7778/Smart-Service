@@ -1,15 +1,15 @@
-"use client"
+"use client";
 
-import { Eye, EyeClosed } from "lucide-react"
-import { Button } from "@workspace/ui/components/button"
-import { Input } from "@workspace/ui/components/input"
-import { cn } from "@workspace/ui/lib/utils"
-import { useState } from "react"
+import { Eye, EyeClosed } from "lucide-react";
+import { Button } from "@workspace/ui/components/button";
+import { Input } from "@workspace/ui/components/input";
+import { cn } from "@workspace/ui/lib/utils";
+import { useState } from "react";
 
 function PasswordInput({ className, ...props }: React.ComponentProps<"input">) {
-  const [showPassword, setShowPassword] = useState<boolean>(false)
+  const [showPassword, setShowPassword] = useState<boolean>(false);
   const disabled =
-    props.value === "" || props.value === undefined || props.disabled
+    props.value === "" || props.value === undefined || props.disabled;
 
   return (
     <div className="relative">
@@ -46,7 +46,7 @@ function PasswordInput({ className, ...props }: React.ComponentProps<"input">) {
 					}
 				`}</style>
     </div>
-  )
+  );
 }
 
-export { PasswordInput }
+export { PasswordInput };

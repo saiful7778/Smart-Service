@@ -1,7 +1,7 @@
-import { env } from "@/configs/env.config"
-import type { IMailProvider } from "./base-mail"
-import { GmailMail } from "./gmail-mail"
-import { MailhogMail } from "./mailHog-mail"
+import { env } from "@/configs/env.config";
+import type { IMailProvider } from "./base-mail";
+import { GmailMail } from "./gmail-mail";
+import { MailhogMail } from "./mailHog-mail";
 
 export function createMailFactory(): IMailProvider {
   if (env.NODE_ENV === "production") {
@@ -10,7 +10,7 @@ export function createMailFactory(): IMailProvider {
       fromEmail: env.MAIL_FROM,
       user: env.GOOGLE_MAIL_USER,
       pass: env.GOOGLE_MAIL_PASS,
-    })
+    });
   }
 
   if (env.NODE_ENV === "development" || env.NODE_ENV === "test") {
@@ -19,8 +19,8 @@ export function createMailFactory(): IMailProvider {
       fromEmail: env.MAIL_FROM,
       host: env.MAILHOG_HOST,
       port: env.MAILHOG_PORT,
-    })
+    });
   }
 
-  throw new Error("Mail provider not found")
+  throw new Error("Mail provider not found");
 }

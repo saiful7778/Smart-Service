@@ -1,14 +1,14 @@
-import nodemailer from "nodemailer"
-import { BaseMail } from "./base-mail"
+import nodemailer from "nodemailer";
+import { BaseMail } from "./base-mail";
 import type {
   GmailMailConfig,
   MailOptions,
   MailSendResult,
-} from "@/types/mail.types"
+} from "@/types/mail.types";
 
 export class GmailMail extends BaseMail {
   constructor(protected readonly config: GmailMailConfig) {
-    super(config)
+    super(config);
   }
 
   protected async createTransporter(): Promise<nodemailer.Transporter> {
@@ -20,14 +20,14 @@ export class GmailMail extends BaseMail {
         user: this.config.user,
         pass: this.config.pass,
       },
-    })
+    });
 
-    await transporter.verify()
+    await transporter.verify();
 
-    return transporter
+    return transporter;
   }
 
   async sendMail(options: MailOptions): Promise<MailSendResult> {
-    return await super.sendMail(options)
+    return await super.sendMail(options);
   }
 }

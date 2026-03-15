@@ -1,24 +1,28 @@
-import SetPasswordButton from "@/features/auth/components/SetPasswordButton"
-import UpdatePasswordForm from "@/features/auth/components/forms/UpdatePasswordForm"
-import { auth } from "@/lib/better-auth/auth"
+import SetPasswordButton from "@/features/auth/components/SetPasswordButton";
+import UpdatePasswordForm from "@/features/auth/components/forms/UpdatePasswordForm";
+import { auth } from "@/lib/better-auth/auth";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@workspace/ui/components/card"
-import { Metadata } from "next"
-import { headers } from "next/headers"
+} from "@workspace/ui/components/card";
+import { Metadata } from "next";
+import { headers } from "next/headers";
 
 export const metadata: Metadata = {
   title: "Update Password",
-}
+};
 
 export default async function UpdatePassword() {
-  const accounts = await auth.api.listUserAccounts({ headers: await headers() })
+  const accounts = await auth.api.listUserAccounts({
+    headers: await headers(),
+  });
 
-  const hasPasswordAccount = accounts.some((a) => a.providerId === "credential")
+  const hasPasswordAccount = accounts.some(
+    (a) => a.providerId === "credential"
+  );
 
   return (
     <div>
@@ -48,5 +52,5 @@ export default async function UpdatePassword() {
         </Card>
       )}
     </div>
-  )
+  );
 }

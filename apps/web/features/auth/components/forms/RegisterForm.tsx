@@ -1,18 +1,18 @@
-"use client"
+"use client";
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import toast from "react-hot-toast"
-import { useState } from "react"
-import { registerSchema, RegisterType } from "../../auth.schema"
-import { authClient } from "@/lib/better-auth/auth-client"
-import { FieldGroup } from "@workspace/ui/components/field"
-import { InputField } from "@workspace/ui/components/form-fields/InputField"
-import { PasswordInputField } from "@workspace/ui/components/form-fields/PasswordInputField"
-import { ButtonSpinner } from "@workspace/ui/components/button-spinner"
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import { useState } from "react";
+import { registerSchema, RegisterType } from "../../auth.schema";
+import { authClient } from "@/lib/better-auth/auth-client";
+import { FieldGroup } from "@workspace/ui/components/field";
+import { InputField } from "@workspace/ui/components/form-fields/InputField";
+import { PasswordInputField } from "@workspace/ui/components/form-fields/PasswordInputField";
+import { ButtonSpinner } from "@workspace/ui/components/button-spinner";
 
 export default function RegisterForm({ redirect }: { redirect: string }) {
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
 
   const form = useForm<RegisterType>({
     resolver: zodResolver(registerSchema),
@@ -22,10 +22,10 @@ export default function RegisterForm({ redirect }: { redirect: string }) {
       password: "",
       confirmPassword: "",
     },
-  })
+  });
 
   const handleSubmit = async (e: RegisterType) => {
-    const toastId = "register_toast_message"
+    const toastId = "register_toast_message";
 
     return await authClient.signUp.email({
       email: e.email,
@@ -34,23 +34,23 @@ export default function RegisterForm({ redirect }: { redirect: string }) {
       callbackURL: redirect,
       fetchOptions: {
         onRequest: () => {
-          setIsLoading(true)
+          setIsLoading(true);
         },
         onSuccess: () => {
-          toast.success("Registration Successfully", { id: toastId })
-          setIsLoading(false)
-          form.reset()
+          toast.success("Registration Successfully", { id: toastId });
+          setIsLoading(false);
+          form.reset();
         },
         onError: ({ error }) => {
           toast.error(error.message ?? "Something went wrong!", {
             id: toastId,
-          })
-          setIsLoading(false)
-          form.reset()
+          });
+          setIsLoading(false);
+          form.reset();
         },
       },
-    })
-  }
+    });
+  };
 
   return (
     <form onSubmit={form.handleSubmit(handleSubmit)}>
@@ -97,5 +97,5 @@ export default function RegisterForm({ redirect }: { redirect: string }) {
         </ButtonSpinner>
       </FieldGroup>
     </form>
-  )
+  );
 }

@@ -1,19 +1,19 @@
-"use client"
+"use client";
 
-import { Button } from "@workspace/ui/components/button"
-import { AlertTriangle, Home, RefreshCw } from "lucide-react"
-import Link from "next/link"
-import "@workspace/ui/globals.css"
-import { DirectionProvider } from "@workspace/ui/components/direction"
-import { TooltipProvider } from "@workspace/ui/components/tooltip"
-import { ThemeProvider } from "@/components/providers/theme-provider"
+import { Button } from "@workspace/ui/components/button";
+import { AlertTriangle, Home, RefreshCw } from "lucide-react";
+import Link from "next/link";
+import "@workspace/ui/globals.css";
+import { DirectionProvider } from "@workspace/ui/components/direction";
+import { TooltipProvider } from "@workspace/ui/components/tooltip";
+import { ThemeProvider } from "@/components/providers/theme-provider";
 
 export default function GlobalError({
   error,
   reset,
 }: {
-  error: Error & { digest?: string }
-  reset: () => void
+  error: Error & { digest?: string };
+  reset: () => void;
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
@@ -132,5 +132,5 @@ export default function GlobalError({
         </DirectionProvider>
       </body>
     </html>
-  )
+  );
 }

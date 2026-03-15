@@ -1,7 +1,7 @@
-import Link from "next/link"
-import { ArrowLeft } from "lucide-react"
-import { Button } from "@workspace/ui/components/button"
-import type { Metadata } from "next"
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
+import { Button } from "@workspace/ui/components/button";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Page Not Found",
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     index: false,
     follow: false,
   },
-}
+};
 
 export default function NotFound() {
   return (
@@ -37,5 +37,5 @@ export default function NotFound() {
         />
       </div>
     </main>
-  )
+  );
 }

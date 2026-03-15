@@ -1,20 +1,20 @@
-"use client"
+"use client";
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { useState } from "react"
-import { resetPasswordSchema, ResetPasswordType } from "../../auth.schema"
-import toast from "react-hot-toast"
-import { authClient } from "@/lib/better-auth/auth-client"
-import { DEFAULT_UNAUTH_PATH } from "@/constant"
-import { FieldGroup } from "@workspace/ui/components/field"
-import { PasswordInputField } from "@workspace/ui/components/form-fields/PasswordInputField"
-import { ButtonSpinner } from "@workspace/ui/components/button-spinner"
-import { useRouter } from "next/navigation"
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { useState } from "react";
+import { resetPasswordSchema, ResetPasswordType } from "../../auth.schema";
+import toast from "react-hot-toast";
+import { authClient } from "@/lib/better-auth/auth-client";
+import { DEFAULT_UNAUTH_PATH } from "@/constant";
+import { FieldGroup } from "@workspace/ui/components/field";
+import { PasswordInputField } from "@workspace/ui/components/form-fields/PasswordInputField";
+import { ButtonSpinner } from "@workspace/ui/components/button-spinner";
+import { useRouter } from "next/navigation";
 
 export default function ResetPasswordForm({ token }: { token: string }) {
-  const [isLoading, setIsLoading] = useState(false)
-  const router = useRouter()
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const form = useForm<ResetPasswordType>({
     resolver: zodResolver(resetPasswordSchema),
@@ -22,34 +22,34 @@ export default function ResetPasswordForm({ token }: { token: string }) {
       password: "",
       confirmPassword: "",
     },
-  })
+  });
 
   const handleSubmit = async (e: ResetPasswordType) => {
-    const toastId = "reset_password_toast_message"
+    const toastId = "reset_password_toast_message";
 
     return await authClient.resetPassword({
       newPassword: e.password,
       token,
       fetchOptions: {
         onRequest: () => {
-          setIsLoading(true)
+          setIsLoading(true);
         },
         onSuccess: () => {
-          toast.success("Password is changed", { id: toastId })
-          setIsLoading(false)
-          form.reset()
-          router.push(DEFAULT_UNAUTH_PATH)
+          toast.success("Password is changed", { id: toastId });
+          setIsLoading(false);
+          form.reset();
+          router.push(DEFAULT_UNAUTH_PATH);
         },
         onError: ({ error }) => {
           toast.error(error.message ?? "Something went wrong!", {
             id: toastId,
-          })
-          setIsLoading(false)
-          form.reset()
+          });
+          setIsLoading(false);
+          form.reset();
         },
       },
-    })
-  }
+    });
+  };
 
   return (
     <form onSubmit={form.handleSubmit(handleSubmit)}>
@@ -80,5 +80,5 @@ export default function ResetPasswordForm({ token }: { token: string }) {
         </ButtonSpinner>
       </FieldGroup>
     </form>
-  )
+  );
 }

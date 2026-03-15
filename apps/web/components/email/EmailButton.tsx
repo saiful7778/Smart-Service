@@ -1,4 +1,4 @@
-import { Button } from "@react-email/components"
+import { Button } from "@react-email/components";
 
 export function EmailButton({
   children,
@@ -11,5 +11,5 @@ export function EmailButton({
     >
       {children}
     </Button>
-  )
+  );
 }

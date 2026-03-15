@@ -1,26 +1,26 @@
-"use client"
+"use client";
 
-import { InputField } from "@workspace/ui/components/form-fields/InputField"
+import { InputField } from "@workspace/ui/components/form-fields/InputField";
 import {
   Field,
   FieldError,
   FieldGroup,
   FieldLabel,
-} from "@workspace/ui/components/field"
-import { PasswordInput } from "@workspace/ui/components/password-input"
-import Link from "next/link"
-import { Controller, useForm } from "react-hook-form"
-import RememberMe from "../RememberMe"
-import { ButtonSpinner } from "@workspace/ui/components/button-spinner"
-import { Button } from "@workspace/ui/components/button"
-import { useState } from "react"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { loginSchema, LoginType } from "../../auth.schema"
-import toast from "react-hot-toast"
-import { authClient } from "@/lib/better-auth/auth-client"
+} from "@workspace/ui/components/field";
+import { PasswordInput } from "@workspace/ui/components/password-input";
+import Link from "next/link";
+import { Controller, useForm } from "react-hook-form";
+import RememberMe from "../RememberMe";
+import { ButtonSpinner } from "@workspace/ui/components/button-spinner";
+import { Button } from "@workspace/ui/components/button";
+import { useState } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { loginSchema, LoginType } from "../../auth.schema";
+import toast from "react-hot-toast";
+import { authClient } from "@/lib/better-auth/auth-client";
 
 export default function LoginForm({ redirect }: { redirect: string }) {
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
 
   const form = useForm<LoginType>({
     resolver: zodResolver(loginSchema),
@@ -29,10 +29,10 @@ export default function LoginForm({ redirect }: { redirect: string }) {
       password: "",
       rememberMe: false,
     },
-  })
+  });
 
   const handleSubmit = async (e: LoginType) => {
-    const toastId = "login_toast_message"
+    const toastId = "login_toast_message";
 
     return await authClient.signIn.email(
       {
@@ -43,12 +43,12 @@ export default function LoginForm({ redirect }: { redirect: string }) {
       },
       {
         onRequest: () => {
-          setIsLoading(true)
+          setIsLoading(true);
         },
         onSuccess: async () => {
-          toast.success("Login Successfully", { id: toastId })
-          setIsLoading(false)
-          form.reset()
+          toast.success("Login Successfully", { id: toastId });
+          setIsLoading(false);
+          form.reset();
         },
         onError: ({ error }) => {
           if (error?.code === "EMAIL_NOT_VERIFIED") {
@@ -67,7 +67,7 @@ export default function LoginForm({ redirect }: { redirect: string }) {
                   </div>
                   <Button
                     onClick={() => {
-                      toast.dismiss(toastId)
+                      toast.dismiss(toastId);
                       // sendVerificationEmail({
                       //   email,
                       //   callbackURL: DEFAULT_AUTH_PATH,
@@ -84,18 +84,18 @@ export default function LoginForm({ redirect }: { redirect: string }) {
                 id: toastId,
                 duration: 5000,
               }
-            )
+            );
           } else {
             toast.error(error.message ?? "Something went wrong!", {
               id: toastId,
-            })
+            });
           }
-          setIsLoading(false)
-          form.reset()
+          setIsLoading(false);
+          form.reset();
         },
       }
-    )
-  }
+    );
+  };
 
   return (
     <form onSubmit={form.handleSubmit(handleSubmit)}>
@@ -149,5 +149,5 @@ export default function LoginForm({ redirect }: { redirect: string }) {
         </ButtonSpinner>
       </FieldGroup>
     </form>
-  )
+  );
 }

@@ -1,8 +1,8 @@
-import { Spinner } from "@workspace/ui/components/spinner"
-import { Button, type ButtonProps } from "@workspace/ui/components/button"
+import { Spinner } from "@workspace/ui/components/spinner";
+import { Button, type ButtonProps } from "@workspace/ui/components/button";
 
 interface ButtonSpinner extends Omit<ButtonProps, "render"> {
-  isLoading: boolean
+  isLoading: boolean;
 }
 
 function ButtonSpinner({
@@ -21,7 +21,7 @@ function ButtonSpinner({
       {isLoading && <Spinner />}
       {isLoading && size?.startsWith("icon") ? null : children}
     </Button>
-  )
+  );
 }
 
-export { ButtonSpinner }
+export { ButtonSpinner };

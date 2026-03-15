@@ -7,14 +7,14 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarRail,
-} from "@workspace/ui/components/sidebar"
-import { SidebarMainMenu } from "./SidebarMainMenu"
-import { SidebarFooterMenu } from "./SidebarFooterMenu"
-import Link from "next/link"
-import { GalleryVerticalEnd } from "lucide-react"
-import { env } from "@/configs/env.config"
+} from "@workspace/ui/components/sidebar";
+import { SidebarMainMenu } from "./SidebarMainMenu";
+import { SidebarFooterMenu } from "./SidebarFooterMenu";
+import Link from "next/link";
+import { GalleryVerticalEnd } from "lucide-react";
+import { env } from "@/configs/env.config";
 
-type AppSidebarProps = React.ComponentProps<typeof Sidebar>
+type AppSidebarProps = React.ComponentProps<typeof Sidebar>;
 
 export async function AppSidebar({ ...props }: AppSidebarProps) {
   return (
@@ -50,5 +50,5 @@ export async function AppSidebar({ ...props }: AppSidebarProps) {
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
-  )
+  );
 }

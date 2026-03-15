@@ -1,18 +1,18 @@
-import { cn } from "@workspace/ui/lib/utils"
+import { cn } from "@workspace/ui/lib/utils";
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@workspace/ui/components/avatar"
-import { getImageProps } from "next/image"
-import userPlaceholderImg from "@/public/user_placeholder_img.png"
+} from "@workspace/ui/components/avatar";
+import { getImageProps } from "next/image";
+import userPlaceholderImg from "@/public/user_placeholder_img.png";
 
 interface UserAvatarProps extends React.ComponentPropsWithRef<"div"> {
-  imageUrl?: string | null | undefined
-  userName: string
-  userEmail: string
-  showDetails?: boolean
-  isActive?: boolean
+  imageUrl?: string | null | undefined;
+  userName: string;
+  userEmail: string;
+  showDetails?: boolean;
+  isActive?: boolean;
 }
 
 export function UserAvatar({
@@ -29,7 +29,7 @@ export function UserAvatar({
     .map((n) => n[0])
     .join("")
     .slice(0, 2)
-    .toUpperCase()
+    .toUpperCase();
 
   return (
     <div
@@ -59,14 +59,14 @@ export function UserAvatar({
         </div>
       )}
     </div>
-  )
+  );
 }
 
 interface UserAvatarImageProps extends React.ComponentProps<
   typeof AvatarImage
 > {
-  image: string | null | undefined
-  alt: string
+  image: string | null | undefined;
+  alt: string;
 }
 
 function UserAvatarImage({ image, alt, ...props }: UserAvatarImageProps) {
@@ -78,7 +78,7 @@ function UserAvatarImage({ image, alt, ...props }: UserAvatarImageProps) {
     height: 100,
     src: image || userPlaceholderImg.src,
     unoptimized: true,
-  })
+  });
 
-  return <AvatarImage src={src} {...props} />
+  return <AvatarImage src={src} {...props} />;
 }

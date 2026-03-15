@@ -1,12 +1,12 @@
-import { UserRoleEnumSchema } from "@workspace/drizzle/client-enums"
-import { createAccessControl } from "better-auth/plugins/access"
-import { defaultStatements } from "better-auth/plugins/admin/access"
+import { UserRoleEnumSchema } from "@workspace/drizzle/client-enums";
+import { createAccessControl } from "better-auth/plugins/access";
+import { defaultStatements } from "better-auth/plugins/admin/access";
 
 const statement = {
   ...defaultStatements,
-} as const
+} as const;
 
-const ac = createAccessControl(statement)
+const ac = createAccessControl(statement);
 
 export const accessControl = {
   ac,
@@ -24,4 +24,4 @@ export const accessControl = {
       ],
     }),
   },
-}
+};

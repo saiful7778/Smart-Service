@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import { ChevronRight } from "lucide-react"
-import { SidebarMenuLink } from "@/types"
-import { usePathname } from "next/navigation"
+import { ChevronRight } from "lucide-react";
+import { SidebarMenuLink } from "@/types";
+import { usePathname } from "next/navigation";
 import {
   SidebarGroup,
   SidebarGroupContent,
@@ -12,19 +12,19 @@ import {
   SidebarMenuItem,
   SidebarMenuSub,
   SidebarMenuSubItem,
-} from "@workspace/ui/components/sidebar"
-import Link from "next/link"
+} from "@workspace/ui/components/sidebar";
+import Link from "next/link";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@workspace/ui/components/collapsible"
-import { mainMenuLinks } from "@/constant/sidebarLinks"
-import { useAuthStore } from "@/stores/zustand/auth/AuthStoreContext"
+} from "@workspace/ui/components/collapsible";
+import { mainMenuLinks } from "@/constant/sidebarLinks";
+import { useAuthStore } from "@/stores/zustand/auth/AuthStoreContext";
 
 export function SidebarMainMenu() {
-  const pathname = usePathname()
-  const user = useAuthStore((state) => state.user!)
+  const pathname = usePathname();
+  const user = useAuthStore((state) => state.user!);
 
   return (
     <>
@@ -48,20 +48,20 @@ export function SidebarMainMenu() {
           )
       )}
     </>
-  )
+  );
 }
 
 function NestedMenu({
   menuLink,
   pathname,
 }: {
-  menuLink: SidebarMenuLink
-  pathname: string
+  menuLink: SidebarMenuLink;
+  pathname: string;
 }) {
-  const hasChildren = menuLink.items && menuLink.items.length > 0
+  const hasChildren = menuLink.items && menuLink.items.length > 0;
 
   const isActive =
-    pathname === menuLink.path || pathname.startsWith(menuLink.path)
+    pathname === menuLink.path || pathname.startsWith(menuLink.path);
 
   if (!hasChildren) {
     return (
@@ -77,7 +77,7 @@ function NestedMenu({
           }
         />
       </SidebarMenuItem>
-    )
+    );
   }
 
   return (
@@ -108,5 +108,5 @@ function NestedMenu({
         </CollapsibleContent>
       </Collapsible>
     </SidebarMenuItem>
-  )
+  );
 }

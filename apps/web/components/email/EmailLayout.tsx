@@ -8,16 +8,16 @@ import {
   Section,
   Tailwind,
   Text,
-} from "@react-email/components"
+} from "@react-email/components";
 
 export function EmailLayout({
   previewText,
   appName,
   children,
 }: {
-  appName: string
-  previewText: string
-  children: React.ReactNode
+  appName: string;
+  previewText: string;
+  children: React.ReactNode;
 }) {
   return (
     <Html>
@@ -57,5 +57,5 @@ export function EmailLayout({
         </Body>
       </Tailwind>
     </Html>
-  )
+  );
 }

@@ -1,9 +1,9 @@
-import { Metadata } from "next"
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Dashboard",
-}
+};
 
 export default function DashboardPage() {
-  return <div>DashboardPage</div>
+  return <div>DashboardPage</div>;
 }

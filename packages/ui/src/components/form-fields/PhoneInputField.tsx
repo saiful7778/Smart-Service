@@ -1,24 +1,24 @@
-import { Control, Controller, FieldValues, Path } from "react-hook-form"
-import type { Country } from "react-phone-number-input"
-import { PhoneInput } from "@workspace/ui/components/phone-input"
+import { Control, Controller, FieldValues, Path } from "react-hook-form";
+import type { Country } from "react-phone-number-input";
+import { PhoneInput } from "@workspace/ui/components/phone-input";
 import {
   Field,
   FieldDescription,
   FieldError,
   FieldLabel,
-} from "@workspace/ui/components/field"
-import { Asterisk } from "lucide-react"
-import { useId } from "react"
+} from "@workspace/ui/components/field";
+import { Asterisk } from "lucide-react";
+import { useId } from "react";
 
 interface PhoneInputFieldProps<
   TFieldValues extends FieldValues,
 > extends React.ComponentProps<"input"> {
-  name: Path<TFieldValues>
-  control: Control<TFieldValues>
-  label?: string
-  description?: string
-  requiredField?: boolean
-  defaultCountry?: Country
+  name: Path<TFieldValues>;
+  control: Control<TFieldValues>;
+  label?: string;
+  description?: string;
+  requiredField?: boolean;
+  defaultCountry?: Country;
 }
 
 function PhoneInputField<TFieldValues extends FieldValues>({
@@ -30,7 +30,7 @@ function PhoneInputField<TFieldValues extends FieldValues>({
   disabled,
   ...props
 }: PhoneInputFieldProps<TFieldValues>) {
-  const fieldId = useId()
+  const fieldId = useId();
   return (
     <Controller
       name={name}
@@ -64,7 +64,7 @@ function PhoneInputField<TFieldValues extends FieldValues>({
         </Field>
       )}
     />
-  )
+  );
 }
 
-export { PhoneInputField }
+export { PhoneInputField };

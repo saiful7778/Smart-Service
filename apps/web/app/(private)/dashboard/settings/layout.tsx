@@ -1,4 +1,4 @@
-import { SettingsSidebar } from "@/components/shared/app-sidebar/SettingsSidebar"
+import { SettingsSidebar } from "@/components/shared/app-sidebar/SettingsSidebar";
 
 export default function SettingsLayout({
   children,
@@ -16,5 +16,5 @@ export default function SettingsLayout({
         <div className="w-full flex-1 lg:max-w-2xl">{children}</div>
       </div>
     </div>
-  )
+  );
 }

@@ -1,14 +1,14 @@
-import { Inter } from "next/font/google"
+import { Inter } from "next/font/google";
 
-import "@workspace/ui/globals.css"
-import { ThemeProvider } from "@/components/providers/theme-provider"
-import { type Metadata } from "next"
-import { env } from "@/configs/env.config"
-import { DirectionProvider } from "@workspace/ui/components/direction"
-import { TooltipProvider } from "@workspace/ui/components/tooltip"
-import { Toaster } from "react-hot-toast"
+import "@workspace/ui/globals.css";
+import { ThemeProvider } from "@/components/providers/theme-provider";
+import { type Metadata } from "next";
+import { env } from "@/configs/env.config";
+import { DirectionProvider } from "@workspace/ui/components/direction";
+import { TooltipProvider } from "@workspace/ui/components/tooltip";
+import { Toaster } from "react-hot-toast";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
   title: {
@@ -59,12 +59,12 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-}
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <html
@@ -93,5 +93,5 @@ export default function RootLayout({
         </DirectionProvider>
       </body>
     </html>
-  )
+  );
 }

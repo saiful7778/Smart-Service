@@ -1,8 +1,8 @@
-import SiteLogo from "@/components/SiteLogo"
-import { env } from "@/configs/env.config"
-import { FieldDescription } from "@workspace/ui/components/field"
-import { type Metadata } from "next"
-import Link from "next/link"
+import SiteLogo from "@/components/SiteLogo";
+import { env } from "@/configs/env.config";
+import { FieldDescription } from "@workspace/ui/components/field";
+import { type Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: {
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     template: `%s | Authentication page - ${env.NEXT_PUBLIC_SITE_NAME}`,
   },
   description: "Authentication pages for Smart Service",
-}
+};
 
 export default function AuthLayout({ children }: LayoutProps<"/">) {
   return (
@@ -30,5 +30,5 @@ export default function AuthLayout({ children }: LayoutProps<"/">) {
         </FieldDescription>
       </div>
     </div>
-  )
+  );
 }
