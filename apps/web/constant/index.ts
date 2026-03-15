@@ -39,8 +39,22 @@ export const breadcrumbRoutes: Array<BreadcrumbRoute> = [
             title: "Profile",
             path: "/dashboard/settings/profile",
           },
+          {
+            title: "Update Password",
+            path: "/dashboard/settings/update-password",
+          },
+          {
+            title: "Sessions",
+            path: "/dashboard/settings/sessions",
+          },
+          {
+            title: "Connected Apps",
+            path: "/dashboard/settings/connected-apps",
+          },
         ],
       },
     ],
   },
 ]
+
+export const SUPPORTED_OAUTH_PROVIDERS = ["google"] as const

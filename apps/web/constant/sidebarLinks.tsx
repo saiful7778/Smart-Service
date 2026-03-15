@@ -45,3 +45,22 @@ export const footerMenuLinks: Array<SidebarMenuLink> = [
     path: "/dashboard/settings",
   },
 ]
+
+export const settingsMenuLinks: Array<{ title: string; path: string }> = [
+  {
+    title: "Profile",
+    path: "/dashboard/settings/profile",
+  },
+  {
+    title: "Update Password",
+    path: "/dashboard/settings/update-password",
+  },
+  {
+    title: "Sessions",
+    path: "/dashboard/settings/sessions",
+  },
+  {
+    title: "Connected Apps",
+    path: "/dashboard/settings/connected-apps",
+  },
+]
