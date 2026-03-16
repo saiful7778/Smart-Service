@@ -60,6 +60,7 @@ function SelectField<TFieldValues extends FieldValues>({
             name={field.name}
             value={field.value}
             onValueChange={field.onChange}
+            items={selectValues}
           >
             <SelectTrigger
               id={fieldId}

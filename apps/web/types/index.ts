@@ -29,3 +29,20 @@ export type AuthUser = {
   banReason?: string | null | undefined;
   banExpires?: Date | null | undefined;
 };
+
+export interface IApiHookInput {
+  onRequest?: () => void;
+  onSuccess?: (message: string) => void;
+  onError?: (errorMessage: string) => void;
+  onValidationErrors?: (
+    fields: Array<{ fieldName: string; message: string }>
+  ) => void;
+}
+
+export type FiltersType = Partial<{
+  page: number;
+  limit: number;
+  search: string;
+  order: "asc" | "desc";
+  orderField: string;
+}>;

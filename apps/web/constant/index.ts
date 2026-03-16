@@ -28,6 +28,10 @@ export const breadcrumbRoutes: Array<BreadcrumbRoute> = [
     path: "/dashboard",
     children: [
       {
+        title: "All Users",
+        path: "/dashboard/super-admin/users",
+      },
+      {
         title: "Settings",
         path: "/dashboard/settings",
         children: [
@@ -54,3 +58,6 @@ export const breadcrumbRoutes: Array<BreadcrumbRoute> = [
 ];
 
 export const SUPPORTED_OAUTH_PROVIDERS = ["google"] as const;
+
+export const DEFAULT_PAGE_INDEX = 1;
+export const DEFAULT_PAGE_SIZE = 20;

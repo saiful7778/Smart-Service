@@ -21,8 +21,13 @@ import { createAuthMiddleware } from "better-auth/api";
 import { nextCookies } from "better-auth/next-js";
 import { ERROR_PAGE_PATH } from "@/constant";
 import { accessControl } from "./accessControl";
-import { UserRoleEnumSchema } from "@workspace/drizzle/client-enums";
+import {
+  UserEventCategoryEnumSchema,
+  UserRoleEnumSchema,
+} from "@workspace/drizzle/client-enums";
 import { mailProvider } from "../mail";
+import { createUserActivity } from "@/features/user/data/create-user-activity";
+import { createUserEvent } from "@/features/user/data/create-user-event";
 
 function createBetterAuth() {
   const defaultPlugins: Array<BetterAuthPlugin> = [];
@@ -63,6 +68,23 @@ function createBetterAuth() {
                 ...session,
               },
             };
+          },
+          after: async (session) => {
+            await createUserActivity({
+              userId: session.userId,
+              sessionId: session.id,
+              ipAddress: session.ipAddress,
+              userAgent: session.userAgent,
+            });
+
+            // Log AUTH event
+            await createUserEvent({
+              userId: session.userId,
+              category: UserEventCategoryEnumSchema.enum.AUTH,
+              action: "LOGIN",
+              ipAddress: session.ipAddress,
+              metadata: { userAgent: session.userAgent },
+            });
           },
         },
       },

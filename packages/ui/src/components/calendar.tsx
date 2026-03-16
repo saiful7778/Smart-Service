@@ -16,6 +16,10 @@ import {
   ChevronDownIcon,
 } from "lucide-react";
 
+export type CalenderProps = React.ComponentProps<typeof DayPicker> & {
+  buttonVariant?: React.ComponentProps<typeof Button>["variant"];
+};
+
 function Calendar({
   className,
   classNames,
@@ -26,9 +30,7 @@ function Calendar({
   formatters,
   components,
   ...props
-}: React.ComponentProps<typeof DayPicker> & {
-  buttonVariant?: React.ComponentProps<typeof Button>["variant"];
-}) {
+}: CalenderProps) {
   const defaultClassNames = getDefaultClassNames();
 
   return (

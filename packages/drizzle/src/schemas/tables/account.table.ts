@@ -6,16 +6,16 @@ import {
   timestamp,
   uniqueIndex,
   uuid,
-} from "drizzle-orm/pg-core"
-import { db_created_at, db_id, db_updated_at } from "../../utils/db-utils"
-import { UserTable } from "./user.table"
-import { relations } from "drizzle-orm/relations"
+} from "drizzle-orm/pg-core";
+import { db_created_at, db_id, db_updated_at } from "../../utils/db-utils";
+import { UserTable } from "./user.table";
+import { relations } from "drizzle-orm/relations";
 import {
   createInsertSchema,
   createSelectSchema,
   createUpdateSchema,
-} from "drizzle-zod"
-import z from "zod"
+} from "drizzle-zod";
+import z from "zod";
 
 export const AccountTable = pgTable(
   "accounts",
@@ -36,9 +36,7 @@ export const AccountTable = pgTable(
     }),
     scope: text("scope"),
     password: text("password"),
-    userId: uuid("user_id")
-      .references(() => UserTable.id)
-      .notNull(),
+    userId: uuid("user_id").notNull(),
     createdAt: db_created_at,
     updatedAt: db_updated_at,
   },
@@ -56,7 +54,7 @@ export const AccountTable = pgTable(
     ),
     index("account_user_id_idx").on(account.userId),
   ]
-)
+);
 
 export const AccountRelations = relations(AccountTable, ({ one }) => ({
   user: one(UserTable, {
@@ -64,16 +62,16 @@ export const AccountRelations = relations(AccountTable, ({ one }) => ({
     fields: [AccountTable.userId],
     references: [UserTable.id],
   }),
-}))
+}));
 
 export const insertAccountSchema = createInsertSchema(AccountTable).omit({
   id: true,
   createdAt: true,
   updatedAt: true,
-})
-export const selectAccountSchema = createSelectSchema(AccountTable)
-export const updateAccountSchema = createUpdateSchema(AccountTable)
+});
+export const selectAccountSchema = createSelectSchema(AccountTable);
+export const updateAccountSchema = createUpdateSchema(AccountTable);
 
-export type AccountDataModel = typeof AccountTable.$inferSelect
-export type InsertAccount = z.infer<typeof insertAccountSchema>
-export type SelectAccount = z.infer<typeof selectAccountSchema>
+export type AccountDataModel = typeof AccountTable.$inferSelect;
+export type InsertAccount = z.infer<typeof insertAccountSchema>;
+export type SelectAccount = z.infer<typeof selectAccountSchema>;

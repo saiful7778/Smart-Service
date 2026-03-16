@@ -5,18 +5,20 @@ import {
   timestamp,
   uniqueIndex,
   varchar,
-} from "drizzle-orm/pg-core"
-import { db_created_at, db_id, db_updated_at } from "../../utils/db-utils"
-import { UserRoleEnum } from "../enums/db-enums"
-import { relations } from "drizzle-orm/relations"
-import { AccountTable } from "./account.table"
-import { SessionTable } from "./session.table"
+} from "drizzle-orm/pg-core";
+import { db_created_at, db_id, db_updated_at } from "../../utils/db-utils";
+import { UserRoleEnum } from "../enums/db-enums";
+import { relations } from "drizzle-orm/relations";
+import { AccountTable } from "./account.table";
+import { SessionTable } from "./session.table";
 import {
   createInsertSchema,
   createSelectSchema,
   createUpdateSchema,
-} from "drizzle-zod"
-import z from "zod"
+} from "drizzle-zod";
+import z from "zod";
+import { UserActivityTable } from "./userActivity.table";
+import { UserEventTable } from "./userEvent.table";
 
 export const UserTable = pgTable(
   "users",
@@ -40,7 +42,7 @@ export const UserTable = pgTable(
     index("user_role_idx").on(user.role),
     index("user_created_at_idx").on(user.createdAt),
   ]
-)
+);
 
 export const UserRelations = relations(UserTable, ({ many }) => ({
   sessions: many(SessionTable, {
@@ -49,7 +51,9 @@ export const UserRelations = relations(UserTable, ({ many }) => ({
   accounts: many(AccountTable, {
     relationName: "UserToAccount",
   }),
-}))
+  activities: many(UserActivityTable, { relationName: "UserToUserActivity" }),
+  events: many(UserEventTable, { relationName: "UserToUserEvent" }),
+}));
 
 export const insertUserSchema = createInsertSchema(UserTable, {
   email: z.email(),
@@ -57,16 +61,16 @@ export const insertUserSchema = createInsertSchema(UserTable, {
   id: true,
   createdAt: true,
   updatedAt: true,
-})
-export const selectUserSchema = createSelectSchema(UserTable)
+});
+export const selectUserSchema = createSelectSchema(UserTable);
 export const updateUserSchema = createUpdateSchema(UserTable, {
-  email: z.email(),
+  email: z.email().optional(),
 }).omit({
   id: true,
   createdAt: true,
   updatedAt: true,
-})
+});
 
-export type UserDataModel = typeof UserTable.$inferSelect
-export type SelectUser = z.infer<typeof selectUserSchema>
-export type InsertUser = z.infer<typeof insertUserSchema>
+export type UserDataModel = typeof UserTable.$inferSelect;
+export type SelectUser = z.infer<typeof selectUserSchema>;
+export type InsertUser = z.infer<typeof insertUserSchema>;

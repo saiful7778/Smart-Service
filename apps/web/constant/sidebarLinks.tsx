@@ -3,7 +3,7 @@ import {
   UserRoleEnumSchema,
   UserRoleEnumType,
 } from "@workspace/drizzle/client-enums";
-import { House, Settings } from "lucide-react";
+import { House, Settings, UsersRound } from "lucide-react";
 
 export const mainMenuLinks: Array<{
   groupName: string;
@@ -22,6 +22,17 @@ export const mainMenuLinks: Array<{
         title: "Dashboard",
         icon: House,
         path: "/dashboard",
+      },
+    ],
+  },
+  {
+    groupName: "Super Admin",
+    accessibleUserRoles: [UserRoleEnumSchema.enum.SUPER_ADMIN],
+    items: [
+      {
+        title: "All Users",
+        icon: UsersRound,
+        path: "/dashboard/super-admin/users",
       },
     ],
   },
