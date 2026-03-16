@@ -24,6 +24,7 @@
     "@better-auth/drizzle-adapter": "^1.5.5",
     "@hookform/resolvers": "^5.2.2",
     "@orpc/client": "^1.13.7",
+    "@orpc/contract": "^1.13.7",
     "@orpc/json-schema": "^1.13.7",
     "@orpc/openapi": "^1.13.7",
     "@orpc/server": "^1.13.7",

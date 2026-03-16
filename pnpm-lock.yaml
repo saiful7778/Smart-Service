@@ -44,6 +44,9 @@ importers:
       '@orpc/client':
         specifier: ^1.13.7
         version: 1.13.7
+      '@orpc/contract':
+        specifier: ^1.13.7
+        version: 1.13.7
       '@orpc/json-schema':
         specifier: ^1.13.7
         version: 1.13.7(ws@8.18.3)
