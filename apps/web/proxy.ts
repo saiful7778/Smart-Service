@@ -1,5 +1,10 @@
-import { getSessionCookie } from "better-auth/cookies";
+import type { RouteType } from "next/dist/lib/load-custom-routes";
 import { NextRequest, NextResponse } from "next/server";
+
+import { getSessionCookie } from "better-auth/cookies";
+
+import { UserRoleEnumSchema } from "@workspace/drizzle/client-enums";
+
 import {
   ACCEPT_INVITATION,
   AUTH_ROUTES,
@@ -8,8 +13,6 @@ import {
   PUBLIC_ROUTES,
 } from "./constant";
 import { auth } from "./lib/better-auth/auth";
-import { UserRoleEnumSchema } from "@workspace/drizzle/client-enums";
-import type { RouteType } from "next/dist/lib/load-custom-routes";
 
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;

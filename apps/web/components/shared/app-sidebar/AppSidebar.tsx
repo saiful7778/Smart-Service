@@ -1,3 +1,7 @@
+import Link from "next/link";
+
+import { GalleryVerticalEnd } from "lucide-react";
+
 import {
   Sidebar,
   SidebarContent,
@@ -8,11 +12,11 @@ import {
   SidebarMenuItem,
   SidebarRail,
 } from "@workspace/ui/components/sidebar";
-import { SidebarMainMenu } from "./SidebarMainMenu";
-import { SidebarFooterMenu } from "./SidebarFooterMenu";
-import Link from "next/link";
-import { GalleryVerticalEnd } from "lucide-react";
+
 import { env } from "@/configs/env.config";
+
+import { SidebarFooterMenu } from "./SidebarFooterMenu";
+import { SidebarMainMenu } from "./SidebarMainMenu";
 
 type AppSidebarProps = React.ComponentProps<typeof Sidebar>;
 

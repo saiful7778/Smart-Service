@@ -1,15 +1,19 @@
 "use client";
 
+import { useState } from "react";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { useState } from "react";
-import { registerSchema, RegisterType } from "../../auth.schema";
-import { authClient } from "@/lib/better-auth/auth-client";
+
+import { ButtonSpinner } from "@workspace/ui/components/button-spinner";
 import { FieldGroup } from "@workspace/ui/components/field";
 import { InputField } from "@workspace/ui/components/form-fields/InputField";
 import { PasswordInputField } from "@workspace/ui/components/form-fields/PasswordInputField";
-import { ButtonSpinner } from "@workspace/ui/components/button-spinner";
+
+import { authClient } from "@/lib/better-auth/auth-client";
+
+import { registerSchema, RegisterType } from "../../auth.schema";
 
 export default function RegisterForm({ redirect }: { redirect: string }) {
   const [isLoading, setIsLoading] = useState(false);

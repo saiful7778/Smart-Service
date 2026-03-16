@@ -15,7 +15,8 @@
   },
   "scripts": {
     "email:dev": "email dev --dir=\"./src/services/mail/templates/\" --port=8088",
-    "lint": "eslint ./src --max-warnings 0"
+    "lint": "eslint ./src --max-warnings 0",
+    "format": "prettier --write \"./src/**/*.ts\""
   },
   "exports": {
     ".": "./src/index.ts"

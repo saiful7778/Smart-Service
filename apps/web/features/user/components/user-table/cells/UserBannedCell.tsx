@@ -1,11 +1,12 @@
+import { format } from "date-fns";
+import { Info } from "lucide-react";
+
 import { Badge } from "@workspace/ui/components/badge";
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
 } from "@workspace/ui/components/hover-card";
-import { format } from "date-fns";
-import { Info } from "lucide-react";
 
 interface UserBannedProps {
   banned: boolean;

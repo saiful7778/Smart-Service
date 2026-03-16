@@ -1,6 +1,11 @@
 "use client";
 
+import { useCallback, useEffect, useLayoutEffect, useState } from "react";
+
 import type { Table } from "@tanstack/react-table";
+import { Loader, X } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
+
 import { Button } from "@workspace/ui/components/button";
 import { Portal } from "@workspace/ui/components/portal";
 import { Separator } from "@workspace/ui/components/separator";
@@ -10,9 +15,6 @@ import {
   TooltipTrigger,
 } from "@workspace/ui/components/tooltip";
 import { cn } from "@workspace/ui/lib/utils";
-import { Loader, X } from "lucide-react";
-import { AnimatePresence, motion } from "motion/react";
-import { useCallback, useEffect, useLayoutEffect, useState } from "react";
 
 interface DataTableActionBarProps<TData> extends React.ComponentProps<
   typeof motion.div

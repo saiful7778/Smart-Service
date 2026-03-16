@@ -1,12 +1,15 @@
 "use client";
 
-import { CircleUserRoundIcon, XIcon } from "lucide-react";
-import { useFileUpload } from "@/hooks/use-file-upload";
-import { useCallback, useEffect, useMemo, useRef } from "react";
-import { Button } from "@workspace/ui/components/button";
 import Image from "next/image";
+import { useCallback, useEffect, useMemo, useRef } from "react";
+
+import { CircleUserRoundIcon, XIcon } from "lucide-react";
+
+import { Button } from "@workspace/ui/components/button";
 import { cn } from "@workspace/ui/lib/utils";
+
 import { MAX_PROFILE_IMAGE_SIZE } from "@/constant";
+import { useFileUpload } from "@/hooks/use-file-upload";
 
 interface ProfileUploadProps {
   /** Controlled value: existing URL string, a File object, or null */

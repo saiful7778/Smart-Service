@@ -1,19 +1,20 @@
-import { DEFAULT_PAGE_INDEX, DEFAULT_PAGE_SIZE } from "@/constant"
 import {
   parseAsInteger,
   parseAsString,
   parseAsStringLiteral,
   useQueryStates,
-} from "nuqs"
+} from "nuqs";
+
+import { DEFAULT_PAGE_INDEX, DEFAULT_PAGE_SIZE } from "@/constant";
 
 export function useTableQueryState({
   defaultPage = DEFAULT_PAGE_INDEX,
   defaultLimit = DEFAULT_PAGE_SIZE,
   defaultSearch = "",
 }: {
-  defaultPage?: number
-  defaultLimit?: number
-  defaultSearch?: string
+  defaultPage?: number;
+  defaultLimit?: number;
+  defaultSearch?: string;
 } = {}) {
   const [filters, setFilters] = useQueryStates(
     {
@@ -38,7 +39,7 @@ export function useTableQueryState({
     {
       history: "replace",
     }
-  )
+  );
 
   return {
     filters,
@@ -46,5 +47,5 @@ export function useTableQueryState({
       setFilters(updates),
     setSearchFilter: (searchValue: string | null) =>
       setFilters({ search: searchValue, page: DEFAULT_PAGE_INDEX }),
-  }
+  };
 }

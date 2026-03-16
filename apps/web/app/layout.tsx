@@ -1,13 +1,17 @@
-import "@workspace/ui/globals.css";
-import { Inter } from "next/font/google";
-import { ThemeProvider } from "@/components/providers/theme-provider";
 import { type Metadata } from "next";
-import { env } from "@/configs/env.config";
+import { Inter } from "next/font/google";
+
+import { NuqsAdapter } from "nuqs/adapters/next/app";
+import { Toaster } from "react-hot-toast";
+
 import { DirectionProvider } from "@workspace/ui/components/direction";
 import { TooltipProvider } from "@workspace/ui/components/tooltip";
-import { Toaster } from "react-hot-toast";
-import { NuqsAdapter } from "nuqs/adapters/next/app";
+import "@workspace/ui/globals.css";
+
 import TanstackQueryProvider from "@/components/providers/tanstack-query-provider";
+import { ThemeProvider } from "@/components/providers/theme-provider";
+
+import { env } from "@/configs/env.config";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 

@@ -1,6 +1,10 @@
 "use client";
 
+import { useMemo } from "react";
+
 import type { Table } from "@tanstack/react-table";
+import { Settings2 } from "lucide-react";
+
 import { Button } from "@workspace/ui/components/button";
 import {
   DropdownMenu,
@@ -11,8 +15,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@workspace/ui/components/dropdown-menu";
-import { Settings2 } from "lucide-react";
-import { useMemo } from "react";
 
 interface DataTableViewOptionsProps<TData> extends React.ComponentProps<
   typeof DropdownMenuContent

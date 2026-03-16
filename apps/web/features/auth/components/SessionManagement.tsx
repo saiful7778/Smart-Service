@@ -1,6 +1,16 @@
 "use client";
 
-import { authClient } from "@/lib/better-auth/auth-client";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+
+import { type Session } from "better-auth";
+import { formatDate } from "date-fns";
+import { Monitor, Smartphone, Trash2 } from "lucide-react";
+import toast from "react-hot-toast";
+import { UAParser } from "ua-parser-js";
+
+import { Badge } from "@workspace/ui/components/badge";
+import { ButtonSpinner } from "@workspace/ui/components/button-spinner";
 import {
   Card,
   CardAction,
@@ -8,15 +18,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@workspace/ui/components/card";
-import { Badge } from "@workspace/ui/components/badge";
-import { type Session } from "better-auth";
-import { useRouter } from "next/navigation";
-import { Monitor, Smartphone, Trash2 } from "lucide-react";
-import toast from "react-hot-toast";
-import { UAParser } from "ua-parser-js";
-import { useState } from "react";
-import { ButtonSpinner } from "@workspace/ui/components/button-spinner";
-import { formatDate } from "date-fns";
+
+import { authClient } from "@/lib/better-auth/auth-client";
 
 export default function SessionManagement({
   sessions,

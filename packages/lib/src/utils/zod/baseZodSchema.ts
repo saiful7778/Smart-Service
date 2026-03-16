@@ -1,4 +1,4 @@
-import z from "zod"
+import z from "zod";
 
 export function stringToArray(
   inputString: string,
@@ -7,29 +7,29 @@ export function stringToArray(
   return inputString
     .split(splitString)
     .map((s) => s.trim())
-    .filter(Boolean)
+    .filter(Boolean);
 }
 
 export const stringArraySchema = z
   .string()
-  .transform<string[]>((val) => stringToArray(val, ","))
+  .transform<string[]>((val) => stringToArray(val, ","));
 
 export const stringBooleanSchema = z.preprocess((val) => {
   if (typeof val === "string") {
-    return val.toLowerCase() === "true"
+    return val.toLowerCase() === "true";
   }
-  return val
-}, z.boolean())
+  return val;
+}, z.boolean());
 
 export const emailField = ({ fieldName }: { fieldName: string }) =>
-  z.email({ error: `${fieldName} is required` })
+  z.email({ error: `${fieldName} is required` });
 
 export const passwordField = ({
   fieldName,
   restrict = true,
 }: {
-  fieldName: string
-  restrict: boolean
+  fieldName: string;
+  restrict: boolean;
 }) =>
   restrict
     ? z
@@ -48,4 +48,4 @@ export const passwordField = ({
     : z
         .string({ error: `${fieldName} is required` })
         .min(6, `${fieldName} must be at least 6 characters long`)
-        .max(20, `${fieldName} must not exceed 20 characters`)
+        .max(20, `${fieldName} must not exceed 20 characters`);

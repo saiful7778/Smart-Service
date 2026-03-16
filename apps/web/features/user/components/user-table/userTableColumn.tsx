@@ -1,17 +1,20 @@
 import { ColumnDef } from "@tanstack/react-table";
-import UserTableRowAction from "./UserTableRowAction";
-import UserBannedCell from "./cells/UserBannedCell";
-import { UserAvatar } from "@/components/UserAvatar";
-import { DataTableColumnHeader } from "@/components/data-table/data-table-column-header";
-import { ListUserOutput } from "../../api/user.router";
-import { Badge } from "@workspace/ui/components/badge";
-import { formatEnumValue } from "@workspace/lib";
-import {
-  type UserRoleEnumType,
-  UserRoleEnumSchema,
-} from "@workspace/drizzle/client-enums";
-import { UserTableRowContextProvider } from "../../context/UserTableRowContext";
 import { format } from "date-fns";
+
+import {
+  UserRoleEnumSchema,
+  type UserRoleEnumType,
+} from "@workspace/drizzle/client-enums";
+import { formatEnumValue } from "@workspace/lib";
+import { Badge } from "@workspace/ui/components/badge";
+
+import { DataTableColumnHeader } from "@/components/data-table/data-table-column-header";
+import { UserAvatar } from "@/components/UserAvatar";
+
+import { ListUserOutput } from "../../api/user.router";
+import { UserTableRowContextProvider } from "../../context/UserTableRowContext";
+import UserBannedCell from "./cells/UserBannedCell";
+import UserTableRowAction from "./UserTableRowAction";
 
 export const teamsTableColumn: Array<
   ColumnDef<ListUserOutput["data"]["data"][number]>

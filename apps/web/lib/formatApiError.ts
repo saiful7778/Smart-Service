@@ -1,6 +1,6 @@
 import {
-  isDefinedError,
   type CommonORPCErrorCode,
+  isDefinedError,
   type ORPCError,
 } from "@orpc/client";
 

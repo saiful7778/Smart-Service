@@ -1,11 +1,14 @@
 "use client";
 
-import { Button } from "@workspace/ui/components/button";
-import { AlertTriangle, Home, RefreshCw } from "lucide-react";
 import Link from "next/link";
-import "@workspace/ui/globals.css";
+
+import { AlertTriangle, Home, RefreshCw } from "lucide-react";
+
+import { Button } from "@workspace/ui/components/button";
 import { DirectionProvider } from "@workspace/ui/components/direction";
 import { TooltipProvider } from "@workspace/ui/components/tooltip";
+import "@workspace/ui/globals.css";
+
 import { ThemeProvider } from "@/components/providers/theme-provider";
 
 export default function GlobalError({

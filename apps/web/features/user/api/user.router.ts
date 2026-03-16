@@ -1,9 +1,6 @@
-import {
-  apiOutput,
-  paginateOutputZodSchema,
-  paginateSchema,
-} from "@workspace/lib";
-import { superAdminBaseOs } from "@/server/middleware/auth.middleware";
+import type { InferRouterOutputs } from "@orpc/server";
+import z from "zod";
+
 import {
   and,
   buildPaginateOptions,
@@ -20,11 +17,18 @@ import {
   UserActivityTable,
   UserTable,
 } from "@workspace/drizzle";
-import z from "zod";
-import type { InferRouterOutputs } from "@orpc/server";
-import { userBannedSchema } from "../user.schema";
+import {
+  apiOutput,
+  paginateOutputZodSchema,
+  paginateSchema,
+} from "@workspace/lib";
+
 import { auth } from "@/lib/better-auth/auth";
+
 import { API_MESSAGES } from "@/constant/apiMessage";
+import { superAdminBaseOs } from "@/server/middleware/auth.middleware";
+
+import { userBannedSchema } from "../user.schema";
 
 const tags = ["users"] as const;
 

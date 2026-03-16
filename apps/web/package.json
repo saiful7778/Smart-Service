@@ -16,7 +16,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "format": "prettier --write \"**/*.{ts,tsx}\"",
+    "format": "prettier --write \"./**/*.{ts,tsx}\"",
     "typecheck": "tsc --noEmit",
     "email:dev": "email dev --dir=\"./templates/email/\" --port=8088"
   },

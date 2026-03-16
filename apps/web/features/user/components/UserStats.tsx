@@ -1,7 +1,8 @@
 "use client";
 
-import { orpcTQClient } from "@/server/orpc.client";
 import { useSuspenseQuery } from "@tanstack/react-query";
+import { UsersRound } from "lucide-react";
+
 import {
   Stat,
   StatIndicator,
@@ -14,7 +15,8 @@ import {
   StatusIndicator,
   StatusLabel,
 } from "@workspace/ui/components/status";
-import { UsersRound } from "lucide-react";
+
+import { orpcTQClient } from "@/server/orpc.client";
 
 function formatGrowth(growth: number | null): {
   label: string;

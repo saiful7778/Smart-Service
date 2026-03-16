@@ -6,4 +6,4 @@ export const seedConfigs = {
     propertyImage: 5,
     organizations: 10,
   },
-}
+};

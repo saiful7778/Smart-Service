@@ -1,11 +1,13 @@
 "use client";
 
 import { DataTable } from "@/components/data-table/data-table";
+import { DataTableToolbar } from "@/components/data-table/data-table-toolbar";
+
 import { useDataTable } from "@/hooks/use-data-table";
 import { FiltersType } from "@/types";
-import { teamsTableColumn } from "./userTableColumn";
-import { DataTableToolbar } from "@/components/data-table/data-table-toolbar";
+
 import { ListUserOutput } from "../../api/user.router";
+import { teamsTableColumn } from "./userTableColumn";
 
 interface UsersTableProps {
   data: ListUserOutput["data"];

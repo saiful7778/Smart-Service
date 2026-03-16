@@ -1,11 +1,13 @@
+import { type Metadata } from "next";
+
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
 } from "@workspace/ui/components/card";
+
 import ResetPasswordForm from "@/features/auth/components/forms/ResetPasswordForm";
-import { type Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Reset Password",

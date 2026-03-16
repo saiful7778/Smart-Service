@@ -1,17 +1,18 @@
-import z from "zod"
-import { fieldValidatorZodSchema } from "./fieldValidatorZodSchema"
+import z from "zod";
+
+import { fieldValidatorZodSchema } from "./fieldValidatorZodSchema";
 
 type ExtractObjectKeys<T> =
-  T extends z.ZodObject<infer Shape> ? Extract<keyof Shape, string> : never
+  T extends z.ZodObject<infer Shape> ? Extract<keyof Shape, string> : never;
 
 export function paginateSchema<TModel extends z.ZodObject<z.ZodRawShape>>({
   orderFields,
   filter,
   searchFields,
 }: {
-  filter?: z.ZodObject<z.ZodRawShape>
-  orderFields?: ReadonlyArray<ExtractObjectKeys<TModel>>
-  searchFields?: ReadonlyArray<ExtractObjectKeys<TModel>>
+  filter?: z.ZodObject<z.ZodRawShape>;
+  orderFields?: ReadonlyArray<ExtractObjectKeys<TModel>>;
+  searchFields?: ReadonlyArray<ExtractObjectKeys<TModel>>;
 }) {
   const base = z.object({
     page: z.number().int().min(1).default(1).optional(),
@@ -23,7 +24,7 @@ export function paginateSchema<TModel extends z.ZodObject<z.ZodRawShape>>({
     search: z.string().trim().toLowerCase().optional(),
     searchFields: fieldValidatorZodSchema("searchFields", searchFields),
     filter: filter ? filter.optional() : z.object({}).optional(),
-  })
+  });
 
-  return base
+  return base;
 }

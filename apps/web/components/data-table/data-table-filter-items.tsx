@@ -1,22 +1,24 @@
-import { Column } from "@tanstack/react-table"
-import { DataTableSliderFilter } from "./data-table-slider-filter"
-import { DataTableDateFilter } from "./data-table-date-filter"
-import { DataTableFacetedFilter } from "./data-table-faceted-filter"
-import { Input } from "@workspace/ui/components/input"
-import { cn } from "@workspace/ui/lib/utils"
+import { Column } from "@tanstack/react-table";
+
+import { Input } from "@workspace/ui/components/input";
+import { cn } from "@workspace/ui/lib/utils";
+
+import { DataTableDateFilter } from "./data-table-date-filter";
+import { DataTableFacetedFilter } from "./data-table-faceted-filter";
+import { DataTableSliderFilter } from "./data-table-slider-filter";
 
 interface DataTableFilterItemProps<TData> {
-  column: Column<TData>
+  column: Column<TData>;
 }
 
 export function DataTableFilterItems<TData>({
   column,
 }: DataTableFilterItemProps<TData>) {
-  "use no memo"
-  const columnMeta = column.columnDef.meta
-  const columnVariant = columnMeta?.variant
+  "use no memo";
+  const columnMeta = column.columnDef.meta;
+  const columnVariant = columnMeta?.variant;
 
-  if (!columnMeta || !columnVariant) return null
+  if (!columnMeta || !columnVariant) return null;
 
   switch (columnVariant) {
     case "text":
@@ -27,7 +29,7 @@ export function DataTableFilterItems<TData>({
           onChange={(event) => column.setFilterValue(event.target.value)}
           className="w-40 lg:w-56"
         />
-      )
+      );
 
     case "number":
       return (
@@ -46,7 +48,7 @@ export function DataTableFilterItems<TData>({
             </span>
           )}
         </div>
-      )
+      );
 
     case "range":
       return (
@@ -54,7 +56,7 @@ export function DataTableFilterItems<TData>({
           column={column}
           title={columnMeta.label ?? column.id}
         />
-      )
+      );
 
     case "date":
     case "dateRange":
@@ -64,7 +66,7 @@ export function DataTableFilterItems<TData>({
           title={columnMeta.label ?? column.id}
           multiple={columnMeta.variant === "dateRange"}
         />
-      )
+      );
 
     case "select":
     case "multiSelect":
@@ -75,9 +77,9 @@ export function DataTableFilterItems<TData>({
           options={columnMeta.options ?? []}
           multiple={columnMeta.variant === "multiSelect"}
         />
-      )
+      );
 
     default:
-      return null
+      return null;
   }
 }

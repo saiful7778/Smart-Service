@@ -1,17 +1,17 @@
-import z from "zod"
+import z from "zod";
 
 export function paginateOutputZodSchema<T extends z.ZodObject<z.ZodRawShape>>(
   zodSchema: T
 ): z.ZodObject<
   {
-    isFirstPage: z.ZodBoolean
-    isLastPage: z.ZodBoolean
-    currentPage: z.ZodNumber
-    previousPage: z.ZodNullable<z.ZodNumber>
-    nextPage: z.ZodNullable<z.ZodNumber>
-    pageCount: z.ZodNumber
-    totalCount: z.ZodNumber
-    data: z.ZodArray<T>
+    isFirstPage: z.ZodBoolean;
+    isLastPage: z.ZodBoolean;
+    currentPage: z.ZodNumber;
+    previousPage: z.ZodNullable<z.ZodNumber>;
+    nextPage: z.ZodNullable<z.ZodNumber>;
+    pageCount: z.ZodNumber;
+    totalCount: z.ZodNumber;
+    data: z.ZodArray<T>;
   },
   z.core.$strip
 > {
@@ -24,5 +24,5 @@ export function paginateOutputZodSchema<T extends z.ZodObject<z.ZodRawShape>>(
     pageCount: z.number(),
     totalCount: z.number(),
     data: z.array(zodSchema),
-  })
+  });
 }

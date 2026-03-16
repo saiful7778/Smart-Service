@@ -1,12 +1,14 @@
 "use client";
 
-import { env } from "@/configs/env.config";
 import {
   adminClient,
   inferAdditionalFields,
   oneTapClient,
 } from "better-auth/client/plugins";
 import { createAuthClient } from "better-auth/react";
+
+import { env } from "@/configs/env.config";
+
 import { accessControl } from "./accessControl";
 import type { auth } from "./auth";
 

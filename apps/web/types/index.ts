@@ -1,6 +1,8 @@
-import type { UserRoleEnumType } from "@workspace/drizzle/client-enums";
-import type { LucideIcon } from "lucide-react";
 import type { RouteType } from "next/dist/lib/load-custom-routes";
+
+import type { LucideIcon } from "lucide-react";
+
+import type { UserRoleEnumType } from "@workspace/drizzle/client-enums";
 
 export type SidebarMenuLink = {
   title: string;

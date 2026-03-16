@@ -1,8 +1,10 @@
 "use client";
 
-import { Button } from "@workspace/ui/components/button";
-import { AlertCircle, RefreshCw, Home } from "lucide-react";
 import Link from "next/link";
+
+import { AlertCircle, Home, RefreshCw } from "lucide-react";
+
+import { Button } from "@workspace/ui/components/button";
 
 export default function Error({
   error,

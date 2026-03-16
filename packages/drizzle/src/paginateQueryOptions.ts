@@ -1,34 +1,35 @@
-import { and, asc, desc, eq, ilike, or, SQL } from "drizzle-orm"
-import { PgTableWithColumns } from "drizzle-orm/pg-core"
-import { PgColumn } from "drizzle-orm/pg-core"
-import { DatabaseType } from "./drizzle-client"
-import { PgTable } from "drizzle-orm/pg-core"
+import { and, asc, desc, eq, ilike, or, SQL } from "drizzle-orm";
+import { PgTableWithColumns } from "drizzle-orm/pg-core";
+import { PgColumn } from "drizzle-orm/pg-core";
+import { PgTable } from "drizzle-orm/pg-core";
+
+import { DatabaseType } from "./drizzle-client";
 
 /** Any Drizzle table or plain column map can be used as a column source */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type TableColumns = Record<string, PgColumn> | PgTableWithColumns<any>
+type TableColumns = Record<string, PgColumn> | PgTableWithColumns<any>;
 
 export interface PaginateQueryOptions {
   /** Pagination page number (1-based) */
-  page?: number
+  page?: number;
 
   /** Number of items per page */
-  limit?: number
+  limit?: number;
 
   /** Sorting direction */
-  order?: "asc" | "desc"
+  order?: "asc" | "desc";
 
   /** Field name to order by — resolved via tableColumns */
-  orderField?: string
+  orderField?: string;
 
   /** Free-text search keyword */
-  search?: string
+  search?: string;
 
   /** Field names to search in — resolved via tableColumns */
-  searchFields?: string[]
+  searchFields?: string[];
 
   /** Additional filter object — { fieldName: value } pairs */
-  filter?: Record<string, unknown>
+  filter?: Record<string, unknown>;
 }
 
 export interface PaginationMeta {
@@ -36,54 +37,54 @@ export interface PaginationMeta {
    * Indicates whether the current page is the first page.
    * True when `currentPage` equals 1.
    */
-  isFirstPage: boolean
+  isFirstPage: boolean;
 
   /**
    * Indicates whether the current page is the last available page.
    * True when `currentPage` is equal to `pageCount`.
    */
-  isLastPage: boolean
+  isLastPage: boolean;
 
   /**
    * The current page number being returned.
    */
-  currentPage: number
+  currentPage: number;
 
   /**
    * The previous page number if it exists.
    * Returns `null` when the current page is the first page.
    */
-  previousPage: number | null
+  previousPage: number | null;
 
   /**
    * The next page number if it exists.
    * Returns `null` when the current page is the last page.
    */
-  nextPage: number | null
+  nextPage: number | null;
 
   /**
    * Total number of pages available based on the total item count
    * and the number of items per page.
    */
-  pageCount: number
+  pageCount: number;
 
   /**
    * Total number of items that match the query in the database,
    * regardless of pagination limits.
    */
-  totalCount: number
+  totalCount: number;
 }
 
 export interface PaginateResult {
-  where: SQL | undefined
-  orderBy: SQL | undefined
-  limit: number
-  offset: number
-  page: number
+  where: SQL | undefined;
+  orderBy: SQL | undefined;
+  limit: number;
+  offset: number;
+  page: number;
 }
 
-const DEFAULT_PAGE = 1
-const DEFAULT_LIMIT = 20
+const DEFAULT_PAGE = 1;
+const DEFAULT_LIMIT = 20;
 
 /**
  * Extract a column by field name from either a table object or a plain column map.
@@ -92,10 +93,10 @@ function getColumn(
   tableColumns: TableColumns,
   field: string
 ): PgColumn | undefined {
-  const col = (tableColumns as Record<string, unknown>)[field]
+  const col = (tableColumns as Record<string, unknown>)[field];
   return col instanceof Object && "columnType" in col
     ? (col as PgColumn)
-    : undefined
+    : undefined;
 }
 
 /**
@@ -105,12 +106,12 @@ function resolveColumns(
   fields: string[] | undefined,
   tableColumns: TableColumns
 ): PgColumn[] {
-  if (!fields || fields.length === 0) return []
+  if (!fields || fields.length === 0) return [];
 
   return fields.flatMap((f) => {
-    const col = getColumn(tableColumns, f)
-    return col ? [col] : []
-  })
+    const col = getColumn(tableColumns, f);
+    return col ? [col] : [];
+  });
 }
 
 /**
@@ -120,13 +121,13 @@ function buildSearchWhere(
   search?: string,
   fields?: PgColumn[]
 ): SQL | undefined {
-  if (!search || !fields?.length) return undefined
+  if (!search || !fields?.length) return undefined;
 
-  const conditions = fields.map((col) => ilike(col, `%${search}%`))
+  const conditions = fields.map((col) => ilike(col, `%${search}%`));
 
-  if (conditions.length === 0) return undefined
+  if (conditions.length === 0) return undefined;
 
-  return conditions.length === 1 ? conditions[0] : or(...conditions)
+  return conditions.length === 1 ? conditions[0] : or(...conditions);
 }
 
 /**
@@ -137,16 +138,16 @@ function buildFilterWhere(
   filter: Record<string, unknown> | undefined,
   tableColumns: TableColumns
 ): SQL | undefined {
-  if (!filter || !Object.keys(filter).length) return undefined
+  if (!filter || !Object.keys(filter).length) return undefined;
 
   const conditions = Object.entries(filter).flatMap(([key, value]) => {
-    const col = getColumn(tableColumns, key)
-    return col ? [eq(col, value)] : []
-  })
+    const col = getColumn(tableColumns, key);
+    return col ? [eq(col, value)] : [];
+  });
 
-  if (!conditions.length) return undefined
+  if (!conditions.length) return undefined;
 
-  return conditions.length === 1 ? conditions[0] : and(...conditions)
+  return conditions.length === 1 ? conditions[0] : and(...conditions);
 }
 
 /**
@@ -157,9 +158,9 @@ function buildWhere(
   filterWhere: SQL | undefined,
   searchWhere: SQL | undefined
 ) {
-  if (!filterWhere || !searchWhere) return filterWhere ?? searchWhere
+  if (!filterWhere || !searchWhere) return filterWhere ?? searchWhere;
 
-  return and(filterWhere, searchWhere)
+  return and(filterWhere, searchWhere);
 }
 
 /**
@@ -170,13 +171,13 @@ function buildOrderBy(
   order: "asc" | "desc" | undefined,
   tableColumns: TableColumns
 ): SQL | undefined {
-  if (!orderField || !order) return undefined
+  if (!orderField || !order) return undefined;
 
-  const col = getColumn(tableColumns, orderField)
+  const col = getColumn(tableColumns, orderField);
 
-  if (!col) return undefined
+  if (!col) return undefined;
 
-  return order === "asc" ? asc(col) : desc(col)
+  return order === "asc" ? asc(col) : desc(col);
 }
 
 /**
@@ -188,9 +189,9 @@ export async function buildPaginationMeta(
   page: number,
   perPage: number
 ): Promise<PaginationMeta> {
-  const totalCount = await db.$count(table)
+  const totalCount = await db.$count(table);
 
-  const pageCount = Math.ceil(totalCount / perPage)
+  const pageCount = Math.ceil(totalCount / perPage);
 
   return {
     currentPage: page,
@@ -200,7 +201,7 @@ export async function buildPaginationMeta(
     nextPage: page < pageCount ? page + 1 : null,
     pageCount,
     totalCount,
-  }
+  };
 }
 
 /**
@@ -246,19 +247,19 @@ export function buildPaginateOptions(
     search,
     searchFields,
     filter,
-  } = options
+  } = options;
 
-  const pageValue = Math.max(1, Number(page))
-  const limitValue = Math.max(1, Number(limit))
-  const offset = (pageValue - 1) * limitValue
+  const pageValue = Math.max(1, Number(page));
+  const limitValue = Math.max(1, Number(limit));
+  const offset = (pageValue - 1) * limitValue;
 
-  const searchColumns = resolveColumns(searchFields, tableColumns)
-  const searchWhere = buildSearchWhere(search, searchColumns)
-  const filterWhere = buildFilterWhere(filter, tableColumns)
+  const searchColumns = resolveColumns(searchFields, tableColumns);
+  const searchWhere = buildSearchWhere(search, searchColumns);
+  const filterWhere = buildFilterWhere(filter, tableColumns);
 
-  const where = buildWhere(filterWhere, searchWhere)
+  const where = buildWhere(filterWhere, searchWhere);
 
-  const orderBy = buildOrderBy(orderField, order, tableColumns)
+  const orderBy = buildOrderBy(orderField, order, tableColumns);
 
   return {
     where,
@@ -266,5 +267,5 @@ export function buildPaginateOptions(
     limit: limitValue,
     offset,
     page: pageValue,
-  }
+  };
 }

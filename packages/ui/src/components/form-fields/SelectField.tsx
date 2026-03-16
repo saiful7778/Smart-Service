@@ -1,5 +1,14 @@
-import { cn } from "@workspace/ui/lib/utils";
+import { useId } from "react";
+
+import { Asterisk, Info } from "lucide-react";
 import { Control, Controller, FieldValues, Path } from "react-hook-form";
+
+import {
+  Field,
+  FieldDescription,
+  FieldError,
+  FieldLabel,
+} from "@workspace/ui/components/field";
 import {
   Select,
   SelectContent,
@@ -7,14 +16,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@workspace/ui/components/select";
-import { useId } from "react";
-import {
-  Field,
-  FieldDescription,
-  FieldError,
-  FieldLabel,
-} from "@workspace/ui/components/field";
-import { Asterisk, Info } from "lucide-react";
+import { cn } from "@workspace/ui/lib/utils";
 
 interface SelectFieldProps<TFieldValues extends FieldValues> {
   name: Path<TFieldValues>;

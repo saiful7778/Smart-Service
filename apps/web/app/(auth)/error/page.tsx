@@ -1,9 +1,12 @@
-import { authErrors } from "@/constant/authErrors";
-import { Button } from "@workspace/ui/components/button";
-import { Card, CardContent, CardFooter } from "@workspace/ui/components/card";
-import { AlertCircle } from "lucide-react";
 import { type Metadata } from "next";
 import Link from "next/link";
+
+import { AlertCircle } from "lucide-react";
+
+import { Button } from "@workspace/ui/components/button";
+import { Card, CardContent, CardFooter } from "@workspace/ui/components/card";
+
+import { authErrors } from "@/constant/authErrors";
 
 export const metadata: Metadata = {
   title: "Error Page",

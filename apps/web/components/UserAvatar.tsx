@@ -1,10 +1,12 @@
-import { cn } from "@workspace/ui/lib/utils";
+import { getImageProps } from "next/image";
+
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
 } from "@workspace/ui/components/avatar";
-import { getImageProps } from "next/image";
+import { cn } from "@workspace/ui/lib/utils";
+
 import userPlaceholderImg from "@/public/user_placeholder_img.png";
 
 interface UserAvatarProps extends React.ComponentPropsWithRef<"div"> {

@@ -1,15 +1,16 @@
-import { db } from "./seed-db-client"
-import { seedConfigs } from "./seed.config"
+import { faker } from "@faker-js/faker";
+import { hashPassword } from "better-auth/crypto";
+
 import {
   AccountTable,
   InsertAccount,
   InsertUser,
   UserDataModel,
   UserTable,
-} from "../schemas"
-import { faker } from "@faker-js/faker"
-import { hashPassword } from "better-auth/crypto"
-import { UserRoleEnumSchema } from "../schemas/enums/zod-enums"
+} from "../schemas";
+import { UserRoleEnumSchema } from "../schemas/enums/zod-enums";
+import { db } from "./seed-db-client";
+import { seedConfigs } from "./seed.config";
 
 const DEFAULT_USERS = [
   {
@@ -30,17 +31,17 @@ const DEFAULT_USERS = [
     role: UserRoleEnumSchema.enum.SUPER_ADMIN,
     seed: "superadmin",
   },
-]
+];
 
-const DEFAULT_PASSWORD = "12345678"
+const DEFAULT_PASSWORD = "12345678";
 
 export async function seedUsers(): Promise<UserDataModel[]> {
-  console.log("🌱 Seeding users...")
+  console.log("🌱 Seeding users...");
 
   const remaining = Math.max(
     0,
     seedConfigs.targets.users - DEFAULT_USERS.length
-  )
+  );
 
   const usersData: InsertUser[] = DEFAULT_USERS.map(
     (u) =>
@@ -52,7 +53,7 @@ export async function seedUsers(): Promise<UserDataModel[]> {
         image: `https://api.dicebear.com/7.x/avataaars/svg?seed=${u.seed}`,
         banned: false,
       }) as InsertUser
-  )
+  );
 
   for (let i = 0; i < remaining; i++) {
     usersData.push({
@@ -62,12 +63,12 @@ export async function seedUsers(): Promise<UserDataModel[]> {
       emailVerified: faker.datatype.boolean(),
       image: faker.image.avatar(),
       banned: faker.datatype.boolean(0.05),
-    })
+    });
   }
 
-  const hashedPassword = await hashPassword(DEFAULT_PASSWORD)
+  const hashedPassword = await hashPassword(DEFAULT_PASSWORD);
 
-  const users = await db.insert(UserTable).values(usersData).returning()
+  const users = await db.insert(UserTable).values(usersData).returning();
 
   const accountsData: InsertAccount[] = users.map(
     (u) =>
@@ -77,10 +78,10 @@ export async function seedUsers(): Promise<UserDataModel[]> {
         password: hashedPassword,
         userId: u.id,
       }) as InsertAccount
-  )
+  );
 
-  await db.insert(AccountTable).values(accountsData)
+  await db.insert(AccountTable).values(accountsData);
 
-  console.log(`✅ ${users.length} Users seeded`)
-  return users
+  console.log(`✅ ${users.length} Users seeded`);
+  return users;
 }

@@ -1,9 +1,10 @@
-import { env } from "@/configs/env.config";
-import { AuthUser } from "@/types";
 import { Session } from "better-auth";
 import { createStore } from "zustand";
 import { combine, devtools } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
+
+import { env } from "@/configs/env.config";
+import { AuthUser } from "@/types";
 
 export interface AuthStoreState {
   user: AuthUser | undefined;

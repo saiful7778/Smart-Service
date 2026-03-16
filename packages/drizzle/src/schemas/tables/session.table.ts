@@ -7,16 +7,17 @@ import {
   uniqueIndex,
   uuid,
   varchar,
-} from "drizzle-orm/pg-core"
-import { db_created_at, db_id, db_updated_at } from "../../utils/db-utils"
-import { UserTable } from "./user.table"
-import { relations } from "drizzle-orm/relations"
+} from "drizzle-orm/pg-core";
+import { relations } from "drizzle-orm/relations";
 import {
   createInsertSchema,
   createSelectSchema,
   createUpdateSchema,
-} from "drizzle-zod"
-import z from "zod"
+} from "drizzle-zod";
+import z from "zod";
+
+import { db_created_at, db_id, db_updated_at } from "../../utils/db-utils";
+import { UserTable } from "./user.table";
 
 export const SessionTable = pgTable(
   "sessions",
@@ -46,7 +47,7 @@ export const SessionTable = pgTable(
     index("session_user_id_idx").on(session.userId),
     index("session_expires_at_idx").on(session.expiresAt),
   ]
-)
+);
 
 export const SessionRelations = relations(SessionTable, ({ one }) => ({
   user: one(UserTable, {
@@ -54,16 +55,16 @@ export const SessionRelations = relations(SessionTable, ({ one }) => ({
     fields: [SessionTable.userId],
     references: [UserTable.id],
   }),
-}))
+}));
 
 export const insertSessionSchema = createInsertSchema(SessionTable).omit({
   id: true,
   createdAt: true,
   updatedAt: true,
-})
-export const selectSessionSchema = createSelectSchema(SessionTable)
-export const updateSessionSchema = createUpdateSchema(SessionTable)
+});
+export const selectSessionSchema = createSelectSchema(SessionTable);
+export const updateSessionSchema = createUpdateSchema(SessionTable);
 
-export type SessionDataModel = typeof SessionTable.$inferSelect
-export type SelectSession = z.infer<typeof selectSessionSchema>
-export type InsertSession = z.infer<typeof insertSessionSchema>
+export type SessionDataModel = typeof SessionTable.$inferSelect;
+export type SelectSession = z.infer<typeof selectSessionSchema>;
+export type InsertSession = z.infer<typeof insertSessionSchema>;

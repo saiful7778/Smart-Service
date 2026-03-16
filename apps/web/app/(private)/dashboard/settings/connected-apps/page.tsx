@@ -1,7 +1,9 @@
-import LinkingApps from "@/features/auth/components/LinkingApps";
-import { auth } from "@/lib/better-auth/auth";
 import { Metadata } from "next";
 import { headers } from "next/headers";
+
+import { auth } from "@/lib/better-auth/auth";
+
+import LinkingApps from "@/features/auth/components/LinkingApps";
 
 export const metadata: Metadata = {
   title: "Connected apps",

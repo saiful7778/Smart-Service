@@ -1,14 +1,16 @@
+import { useId } from "react";
+
+import { Asterisk } from "lucide-react";
 import { Control, Controller, FieldValues, Path } from "react-hook-form";
 import type { Country } from "react-phone-number-input";
-import { PhoneInput } from "@workspace/ui/components/phone-input";
+
 import {
   Field,
   FieldDescription,
   FieldError,
   FieldLabel,
 } from "@workspace/ui/components/field";
-import { Asterisk } from "lucide-react";
-import { useId } from "react";
+import { PhoneInput } from "@workspace/ui/components/phone-input";
 
 interface PhoneInputFieldProps<
   TFieldValues extends FieldValues,

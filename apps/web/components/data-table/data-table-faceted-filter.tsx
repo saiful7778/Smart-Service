@@ -1,6 +1,10 @@
-import { Option } from "@/types/data-table";
+import { useCallback, useMemo, useState } from "react";
+
 import type { Column } from "@tanstack/react-table";
 import { Check, PlusCircle, XCircle } from "lucide-react";
+
+import { Badge } from "@workspace/ui/components/badge";
+import { Button } from "@workspace/ui/components/button";
 import {
   Command,
   CommandEmpty,
@@ -10,16 +14,15 @@ import {
   CommandList,
   CommandSeparator,
 } from "@workspace/ui/components/command";
-import { cn } from "@workspace/ui/lib/utils";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@workspace/ui/components/popover";
 import { Separator } from "@workspace/ui/components/separator";
-import { Button } from "@workspace/ui/components/button";
-import { Badge } from "@workspace/ui/components/badge";
-import { useCallback, useMemo, useState } from "react";
+import { cn } from "@workspace/ui/lib/utils";
+
+import { Option } from "@/types/data-table";
 
 interface DataTableFacetedFilterProps<TData, TValue> {
   column?: Column<TData, TValue>;

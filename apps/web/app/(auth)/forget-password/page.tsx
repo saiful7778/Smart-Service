@@ -1,3 +1,8 @@
+import { type Metadata } from "next";
+import Link from "next/link";
+
+import { ArrowLeft } from "lucide-react";
+
 import {
   Card,
   CardContent,
@@ -5,10 +10,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@workspace/ui/components/card";
+
 import ForgetPasswordForm from "@/features/auth/components/forms/ForgetPasswordForm";
-import { ArrowLeft } from "lucide-react";
-import { type Metadata } from "next";
-import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Forget Password",

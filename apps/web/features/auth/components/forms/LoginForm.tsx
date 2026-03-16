@@ -1,23 +1,27 @@
 "use client";
 
-import { InputField } from "@workspace/ui/components/form-fields/InputField";
+import Link from "next/link";
+import { useState } from "react";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Controller, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+
+import { Button } from "@workspace/ui/components/button";
+import { ButtonSpinner } from "@workspace/ui/components/button-spinner";
 import {
   Field,
   FieldError,
   FieldGroup,
   FieldLabel,
 } from "@workspace/ui/components/field";
+import { InputField } from "@workspace/ui/components/form-fields/InputField";
 import { PasswordInput } from "@workspace/ui/components/password-input";
-import Link from "next/link";
-import { Controller, useForm } from "react-hook-form";
-import RememberMe from "../RememberMe";
-import { ButtonSpinner } from "@workspace/ui/components/button-spinner";
-import { Button } from "@workspace/ui/components/button";
-import { useState } from "react";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { loginSchema, LoginType } from "../../auth.schema";
-import toast from "react-hot-toast";
+
 import { authClient } from "@/lib/better-auth/auth-client";
+
+import { loginSchema, LoginType } from "../../auth.schema";
+import RememberMe from "../RememberMe";
 
 export default function LoginForm({ redirect }: { redirect: string }) {
   const [isLoading, setIsLoading] = useState(false);

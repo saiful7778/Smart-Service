@@ -1,6 +1,8 @@
-import { env } from "@/configs/env.config";
-import { Spinner } from "@workspace/ui/components/spinner";
 import { GalleryVerticalEnd } from "lucide-react";
+
+import { Spinner } from "@workspace/ui/components/spinner";
+
+import { env } from "@/configs/env.config";
 
 export default function Loading() {
   return (

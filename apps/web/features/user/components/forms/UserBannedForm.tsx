@@ -1,9 +1,8 @@
-import { Controller, useForm } from "react-hook-form";
-import { userBannedSchema, UserBannedType } from "../../user.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useUserTableRowContext } from "../../context/UserTableRowContext";
-import DatePickerField from "@/components/fields/DatePickerField";
-import { Switch } from "@workspace/ui/components/switch";
+import { Controller, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+
+import { Button } from "@workspace/ui/components/button";
 import {
   Field,
   FieldError,
@@ -11,10 +10,14 @@ import {
   FieldLabel,
 } from "@workspace/ui/components/field";
 import { InputField } from "@workspace/ui/components/form-fields/InputField";
-import { Button } from "@workspace/ui/components/button";
 import { Spinner } from "@workspace/ui/components/spinner";
+import { Switch } from "@workspace/ui/components/switch";
+
+import DatePickerField from "@/components/fields/DatePickerField";
+
 import { useBanUnbannedUser } from "../../api/users.api.hook";
-import toast from "react-hot-toast";
+import { useUserTableRowContext } from "../../context/UserTableRowContext";
+import { userBannedSchema, UserBannedType } from "../../user.schema";
 
 interface UserBannedFormProps {
   userId: string;

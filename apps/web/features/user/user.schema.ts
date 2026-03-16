@@ -1,5 +1,6 @@
-import { UserRoleEnumSchema } from "@workspace/drizzle/client-enums";
 import z from "zod";
+
+import { UserRoleEnumSchema } from "@workspace/drizzle/client-enums";
 
 export const userBannedSchema = z.object({
   banned: z.boolean().optional(),

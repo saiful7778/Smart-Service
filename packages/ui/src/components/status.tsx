@@ -1,6 +1,8 @@
+import type * as React from "react";
+
 import { cva, type VariantProps } from "class-variance-authority";
 import { Slot as SlotPrimitive } from "radix-ui";
-import type * as React from "react";
+
 import { cn } from "@workspace/ui/lib/utils";
 
 type DivProps = React.ComponentProps<"div">;

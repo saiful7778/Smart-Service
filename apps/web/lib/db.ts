@@ -1,7 +1,8 @@
 import "server-only";
 
-import { env } from "@/configs/env.config";
 import { createDrizzleClient, type DatabaseType } from "@workspace/drizzle";
+
+import { env } from "@/configs/env.config";
 
 const globalForDb = globalThis as unknown as {
   db: DatabaseType | undefined;

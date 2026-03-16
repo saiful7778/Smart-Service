@@ -1,21 +1,22 @@
-import { db_id } from "../../utils/db-utils"
+import { relations } from "drizzle-orm";
 import {
-  text,
-  index,
   foreignKey,
-  timestamp,
-  varchar,
-  uuid,
+  index,
   pgTable,
-} from "drizzle-orm/pg-core"
-import { UserTable } from "./user.table"
-import { relations } from "drizzle-orm"
+  text,
+  timestamp,
+  uuid,
+  varchar,
+} from "drizzle-orm/pg-core";
 import {
   createInsertSchema,
   createSelectSchema,
   createUpdateSchema,
-} from "drizzle-zod"
-import z from "zod"
+} from "drizzle-zod";
+import z from "zod";
+
+import { db_id } from "../../utils/db-utils";
+import { UserTable } from "./user.table";
 
 export const UserActivityTable = pgTable(
   "user_activities",
@@ -45,7 +46,7 @@ export const UserActivityTable = pgTable(
     index("user_activity_login_at_idx").on(userActivity.loginAt),
     index("session_activity_last_seen_at_idx").on(userActivity.lastSeenAt),
   ]
-)
+);
 
 export const UserActivityRelations = relations(
   UserActivityTable,
@@ -56,20 +57,20 @@ export const UserActivityRelations = relations(
       references: [UserTable.id],
     }),
   })
-)
+);
 
 export const insertUserActivitySchema = createInsertSchema(
   UserActivityTable
 ).omit({
   id: true,
-})
-export const selectUserActivitySchema = createSelectSchema(UserActivityTable)
+});
+export const selectUserActivitySchema = createSelectSchema(UserActivityTable);
 export const updateUserActivitySchema = createUpdateSchema(
   UserActivityTable
 ).omit({
   id: true,
-})
+});
 
-export type UserActivityDataModel = typeof UserActivityTable.$inferSelect
-export type InsertUserActivity = z.infer<typeof insertUserActivitySchema>
-export type SelectUserActivity = z.infer<typeof selectUserActivitySchema>
+export type UserActivityDataModel = typeof UserActivityTable.$inferSelect;
+export type InsertUserActivity = z.infer<typeof insertUserActivitySchema>;
+export type SelectUserActivity = z.infer<typeof selectUserActivitySchema>;

@@ -7,8 +7,6 @@ import {
   uniqueIndex,
   uuid,
 } from "drizzle-orm/pg-core";
-import { db_created_at, db_id, db_updated_at } from "../../utils/db-utils";
-import { UserTable } from "./user.table";
 import { relations } from "drizzle-orm/relations";
 import {
   createInsertSchema,
@@ -16,6 +14,9 @@ import {
   createUpdateSchema,
 } from "drizzle-zod";
 import z from "zod";
+
+import { db_created_at, db_id, db_updated_at } from "../../utils/db-utils";
+import { UserTable } from "./user.table";
 
 export const AccountTable = pgTable(
   "accounts",

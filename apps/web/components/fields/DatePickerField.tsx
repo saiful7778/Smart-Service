@@ -1,27 +1,29 @@
-import { ButtonProps } from "@workspace/ui/components/button"
-import { CalenderProps } from "@workspace/ui/components/calendar"
+import { Info } from "lucide-react";
+import { Control, Controller, FieldValues, Path } from "react-hook-form";
+
+import { ButtonProps } from "@workspace/ui/components/button";
+import { CalenderProps } from "@workspace/ui/components/calendar";
 import {
   Field,
   FieldDescription,
   FieldError,
   FieldLabel,
-} from "@workspace/ui/components/field"
-import { Info } from "lucide-react"
-import { Control, Controller, FieldValues, Path } from "react-hook-form"
-import DatePicker from "../DatePicker"
+} from "@workspace/ui/components/field";
+
+import DatePicker from "../DatePicker";
 
 interface DatePickerFieldProps<TFieldValues extends FieldValues> {
-  name: Path<TFieldValues>
-  control: Control<TFieldValues>
-  label?: string
-  description?: string
-  isDescriptionInfoIconShow?: boolean
-  requiredField?: boolean
-  placeholder?: string
-  inputVariant?: ButtonProps["variant"]
-  disabled?: boolean
-  triggerClassName?: string
-  calenderDisable?: CalenderProps["disabled"]
+  name: Path<TFieldValues>;
+  control: Control<TFieldValues>;
+  label?: string;
+  description?: string;
+  isDescriptionInfoIconShow?: boolean;
+  requiredField?: boolean;
+  placeholder?: string;
+  inputVariant?: ButtonProps["variant"];
+  disabled?: boolean;
+  triggerClassName?: string;
+  calenderDisable?: CalenderProps["disabled"];
 }
 
 export default function DatePickerField<TFieldValues extends FieldValues>({
@@ -71,5 +73,5 @@ export default function DatePickerField<TFieldValues extends FieldValues>({
         </Field>
       )}
     />
-  )
+  );
 }

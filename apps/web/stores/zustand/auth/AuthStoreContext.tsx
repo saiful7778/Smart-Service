@@ -1,10 +1,13 @@
 "use client";
 
 import { createContext, useContext, useState } from "react";
-import { authStore, AuthStoreAction, AuthStoreState } from "./authStore";
-import { StoreApi, useStore } from "zustand";
-import { AuthUser } from "@/types";
+
 import { Session } from "better-auth";
+import { StoreApi, useStore } from "zustand";
+
+import { AuthUser } from "@/types";
+
+import { authStore, AuthStoreAction, AuthStoreState } from "./authStore";
 
 const AuthStoreContext = createContext<StoreApi<
   AuthStoreState & AuthStoreAction

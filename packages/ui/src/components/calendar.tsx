@@ -1,20 +1,21 @@
 "use client";
 
 import * as React from "react";
+
 import {
+  ChevronDownIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+} from "lucide-react";
+import {
+  type DayButton,
   DayPicker,
   getDefaultClassNames,
-  type DayButton,
   type Locale,
 } from "react-day-picker";
 
-import { cn } from "@workspace/ui/lib/utils";
 import { Button, buttonVariants } from "@workspace/ui/components/button";
-import {
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  ChevronDownIcon,
-} from "lucide-react";
+import { cn } from "@workspace/ui/lib/utils";
 
 export type CalenderProps = React.ComponentProps<typeof DayPicker> & {
   buttonVariant?: React.ComponentProps<typeof Button>["variant"];

@@ -1,6 +1,8 @@
-import { db } from "@/lib/db";
-import { openAPIHandler } from "@/server/orpc.handler";
 import { NextRequest, NextResponse } from "next/server";
+
+import { db } from "@/lib/db";
+
+import { openAPIHandler } from "@/server/orpc.handler";
 
 async function handleRequest(request: NextRequest) {
   const { response } = await openAPIHandler.handle(request, {

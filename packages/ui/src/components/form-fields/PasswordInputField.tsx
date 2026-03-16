@@ -1,13 +1,15 @@
+import { useId } from "react";
+
+import { Asterisk } from "lucide-react";
 import { Control, Controller, FieldValues, Path } from "react-hook-form";
-import { PasswordInput } from "@workspace/ui/components/password-input";
+
 import {
   Field,
   FieldDescription,
   FieldError,
   FieldLabel,
 } from "@workspace/ui/components/field";
-import { Asterisk } from "lucide-react";
-import { useId } from "react";
+import { PasswordInput } from "@workspace/ui/components/password-input";
 
 interface PasswordInputFieldProps<
   TFieldValues extends FieldValues,

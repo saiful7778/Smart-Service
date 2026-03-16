@@ -1,11 +1,13 @@
-import ProfileUpdateForm from "@/features/auth/components/forms/ProfileUpdateForm";
+import { Metadata } from "next";
+
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
 } from "@workspace/ui/components/card";
-import { Metadata } from "next";
+
+import ProfileUpdateForm from "@/features/auth/components/forms/ProfileUpdateForm";
 
 export const metadata: Metadata = {
   title: "Profile Settings",

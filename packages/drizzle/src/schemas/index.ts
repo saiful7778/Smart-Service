@@ -1,2 +1,2 @@
-export * from "./tables"
-export * from "./enums/db-enums"
+export * from "./tables";
+export * from "./enums/db-enums";

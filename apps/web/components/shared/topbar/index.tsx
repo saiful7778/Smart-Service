@@ -1,7 +1,9 @@
-import { ThemeChanger } from "@/components/ThemeChanger";
 import { SidebarTrigger } from "@workspace/ui/components/sidebar";
-import { TopbarUser } from "./TopbarUser";
+
+import { ThemeChanger } from "@/components/ThemeChanger";
+
 import { AppBreadcrumb } from "../AppBreadcrumb";
+import { TopbarUser } from "./TopbarUser";
 
 export function Topbar() {
   return (

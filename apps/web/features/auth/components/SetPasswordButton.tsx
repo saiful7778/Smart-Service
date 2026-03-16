@@ -1,12 +1,16 @@
 "use client";
 
-import { RESET_PASSWORD_PATH } from "@/constant";
-import { authClient } from "@/lib/better-auth/auth-client";
-import { useAuthStore } from "@/stores/zustand/auth/AuthStoreContext";
+import { useState } from "react";
+
+import toast from "react-hot-toast";
+
 import { ButtonProps } from "@workspace/ui/components/button";
 import { ButtonSpinner } from "@workspace/ui/components/button-spinner";
-import { useState } from "react";
-import toast from "react-hot-toast";
+
+import { authClient } from "@/lib/better-auth/auth-client";
+
+import { RESET_PASSWORD_PATH } from "@/constant";
+import { useAuthStore } from "@/stores/zustand/auth/AuthStoreContext";
 
 export default function SetPasswordButton({
   variant = "outline",

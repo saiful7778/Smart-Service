@@ -1,4 +1,4 @@
-import { Skeleton } from "@workspace/ui/components/skeleton"
+import { Skeleton } from "@workspace/ui/components/skeleton";
 import {
   Table,
   TableBody,
@@ -6,10 +6,10 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@workspace/ui/components/table"
+} from "@workspace/ui/components/table";
 
 interface TableSkeletonProps {
-  rows?: number
+  rows?: number;
 }
 
 function DataTableSkeleton({ rows = 10 }: TableSkeletonProps) {
@@ -40,7 +40,7 @@ function DataTableSkeleton({ rows = 10 }: TableSkeletonProps) {
         </Table>
       </div>
     </div>
-  )
+  );
 }
 
-export { DataTableSkeleton }
+export { DataTableSkeleton };

@@ -1,5 +1,7 @@
-import { config } from "dotenv";
 import { join } from "node:path";
+
+import { config } from "dotenv";
+
 import { createDrizzleClient } from "../drizzle-client";
 
 const NODE_ENV = process.env.NODE_ENV || "development";
@@ -15,5 +17,5 @@ config({
 export const db = createDrizzleClient(
   process.env.DATABASE_URL!,
   process.env.NODE_ENV!,
-  "seed",
+  "seed"
 );

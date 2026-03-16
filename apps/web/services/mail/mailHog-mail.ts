@@ -1,10 +1,12 @@
 import nodemailer from "nodemailer";
-import { BaseMail } from "./base-mail";
+
 import type {
   MailhogMailConfig,
   MailOptions,
   MailSendResult,
 } from "@/types/mail.types";
+
+import { BaseMail } from "./base-mail";
 
 export class MailhogMail extends BaseMail {
   constructor(protected readonly config: MailhogMailConfig) {

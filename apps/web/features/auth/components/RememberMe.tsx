@@ -1,6 +1,7 @@
-import { Field, FieldLabel } from "@workspace/ui/components/field";
-import { Checkbox } from "@workspace/ui/components/checkbox";
 import { Control, Controller, FieldValues, Path } from "react-hook-form";
+
+import { Checkbox } from "@workspace/ui/components/checkbox";
+import { Field, FieldLabel } from "@workspace/ui/components/field";
 
 interface RememberMeProps<
   TFieldValues extends FieldValues,

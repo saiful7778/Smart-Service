@@ -1,3 +1,5 @@
+import { CircleQuestionMark } from "lucide-react";
+
 import {
   Empty,
   EmptyDescription,
@@ -5,7 +7,6 @@ import {
   EmptyMedia,
   EmptyTitle,
 } from "@workspace/ui/components/empty";
-import { CircleQuestionMark } from "lucide-react";
 
 function DataTableEmpty() {
   return (

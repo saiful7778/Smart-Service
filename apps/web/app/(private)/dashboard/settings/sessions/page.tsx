@@ -1,8 +1,10 @@
-import SessionManagement from "@/features/auth/components/SessionManagement";
-import { getAuthUser } from "@/features/auth/data/getAuthUser";
-import { auth } from "@/lib/better-auth/auth";
 import { Metadata } from "next";
 import { headers } from "next/headers";
+
+import { auth } from "@/lib/better-auth/auth";
+
+import SessionManagement from "@/features/auth/components/SessionManagement";
+import { getAuthUser } from "@/features/auth/data/getAuthUser";
 
 export const metadata: Metadata = {
   title: "Session",

@@ -1,8 +1,7 @@
-import "server-only";
-
-import { env } from "@/configs/env.config";
 import { drizzleAdapter } from "@better-auth/drizzle-adapter";
 import { betterAuth, type BetterAuthPlugin } from "better-auth";
+import { createAuthMiddleware } from "better-auth/api";
+import { nextCookies } from "better-auth/next-js";
 import {
   type AccessControl,
   admin,
@@ -10,24 +9,27 @@ import {
   oneTap,
   openAPI,
 } from "better-auth/plugins";
-import { db } from "../db";
+import "server-only";
+
 import {
   AccountTable,
   SessionTable,
   UserTable,
   VerificationTable,
 } from "@workspace/drizzle";
-import { createAuthMiddleware } from "better-auth/api";
-import { nextCookies } from "better-auth/next-js";
-import { ERROR_PAGE_PATH } from "@/constant";
-import { accessControl } from "./accessControl";
 import {
   UserEventCategoryEnumSchema,
   UserRoleEnumSchema,
 } from "@workspace/drizzle/client-enums";
-import { mailProvider } from "../mail";
+
+import { env } from "@/configs/env.config";
+import { ERROR_PAGE_PATH } from "@/constant";
 import { createUserActivity } from "@/features/user/data/create-user-activity";
 import { createUserEvent } from "@/features/user/data/create-user-event";
+
+import { db } from "../db";
+import { mailProvider } from "../mail";
+import { accessControl } from "./accessControl";
 
 function createBetterAuth() {
   const defaultPlugins: Array<BetterAuthPlugin> = [];

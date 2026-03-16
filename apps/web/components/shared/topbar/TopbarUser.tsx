@@ -1,7 +1,12 @@
 "use client";
 
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+
 import { LogOut, UserRoundCog } from "lucide-react";
 import toast from "react-hot-toast";
+
+import { Button } from "@workspace/ui/components/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,12 +16,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@workspace/ui/components/dropdown-menu";
-import { Button } from "@workspace/ui/components/button";
-import { UserAvatar } from "@/components/UserAvatar";
-import Link from "next/link";
+
 import { authClient } from "@/lib/better-auth/auth-client";
+
+import { UserAvatar } from "@/components/UserAvatar";
+
 import { DEFAULT_UNAUTH_PATH } from "@/constant";
-import { usePathname, useRouter } from "next/navigation";
 import { useAuthStore } from "@/stores/zustand/auth/AuthStoreContext";
 
 export function TopbarUser() {

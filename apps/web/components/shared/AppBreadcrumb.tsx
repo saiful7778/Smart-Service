@@ -1,7 +1,8 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Fragment } from "react";
 
 import {
   Breadcrumb,
@@ -11,9 +12,9 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@workspace/ui/components/breadcrumb";
-import { Fragment } from "react";
-import { BreadcrumbRoute } from "@/types";
+
 import { breadcrumbRoutes } from "@/constant";
+import { BreadcrumbRoute } from "@/types";
 
 export function findBreadcrumbs(
   routes: BreadcrumbRoute[],

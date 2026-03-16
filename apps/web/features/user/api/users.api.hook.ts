@@ -1,9 +1,11 @@
 "use client";
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+
+import { formatApiError } from "@/lib/formatApiError";
+
 import { orpcTQClient } from "@/server/orpc.client";
 import { IApiHookInput } from "@/types";
-import { formatApiError } from "@/lib/formatApiError";
 
 export function useBanUnbannedUser({
   onSuccess,

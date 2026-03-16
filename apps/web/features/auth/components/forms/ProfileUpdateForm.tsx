@@ -1,9 +1,12 @@
 "use client";
 
-import { ProfileUpload } from "@/components/ProfileUpload";
-import { authClient } from "@/lib/better-auth/auth-client";
-import { useAuthStore } from "@/stores/zustand/auth/AuthStoreContext";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Controller, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+
 import { ButtonSpinner } from "@workspace/ui/components/button-spinner";
 import {
   Field,
@@ -13,10 +16,13 @@ import {
   FieldLabel,
 } from "@workspace/ui/components/field";
 import { InputField } from "@workspace/ui/components/form-fields/InputField";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { Controller, useForm } from "react-hook-form";
-import toast from "react-hot-toast";
+
+import { authClient } from "@/lib/better-auth/auth-client";
+
+import { ProfileUpload } from "@/components/ProfileUpload";
+
+import { useAuthStore } from "@/stores/zustand/auth/AuthStoreContext";
+
 import { profileUpdateSchema, ProfileUpdateType } from "../../auth.schema";
 
 export default function ProfileUpdateForm() {

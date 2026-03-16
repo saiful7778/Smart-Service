@@ -1,3 +1,6 @@
+import { render } from "@react-email/components";
+import nodemailer from "nodemailer";
+
 import EmailVerificationMail from "@/templates/email/EmailVerificationMail";
 import ResetPasswordMail from "@/templates/email/ResetPasswordMail";
 import type {
@@ -7,8 +10,6 @@ import type {
   MailSendResult,
   PasswordResetEmailOptions,
 } from "@/types/mail.types";
-import { render } from "@react-email/components";
-import nodemailer from "nodemailer";
 
 // Mail Provider Interface
 export interface IMailProvider {

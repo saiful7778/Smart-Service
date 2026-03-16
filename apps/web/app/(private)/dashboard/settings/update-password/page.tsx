@@ -1,6 +1,6 @@
-import SetPasswordButton from "@/features/auth/components/SetPasswordButton";
-import UpdatePasswordForm from "@/features/auth/components/forms/UpdatePasswordForm";
-import { auth } from "@/lib/better-auth/auth";
+import { Metadata } from "next";
+import { headers } from "next/headers";
+
 import {
   Card,
   CardContent,
@@ -8,8 +8,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@workspace/ui/components/card";
-import { Metadata } from "next";
-import { headers } from "next/headers";
+
+import { auth } from "@/lib/better-auth/auth";
+
+import UpdatePasswordForm from "@/features/auth/components/forms/UpdatePasswordForm";
+import SetPasswordButton from "@/features/auth/components/SetPasswordButton";
 
 export const metadata: Metadata = {
   title: "Update Password",

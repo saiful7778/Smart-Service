@@ -2,20 +2,22 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { userUpdateSchema, type UserUpdateType } from "../../user.schema";
+import toast from "react-hot-toast";
+
 import {
   UserRoleEnumSchema,
   type UserRoleEnumType,
 } from "@workspace/drizzle/client-enums";
+import { formatEnumValue } from "@workspace/lib";
+import { Button } from "@workspace/ui/components/button";
 import { FieldGroup } from "@workspace/ui/components/field";
 import { InputField } from "@workspace/ui/components/form-fields/InputField";
-import { Button } from "@workspace/ui/components/button";
-import { Spinner } from "@workspace/ui/components/spinner";
 import { SelectField } from "@workspace/ui/components/form-fields/SelectField";
+import { Spinner } from "@workspace/ui/components/spinner";
+
 import { useUserUpdate } from "../../api/users.api.hook";
-import toast from "react-hot-toast";
-import { formatEnumValue } from "@workspace/lib";
 import { useUserTableRowContext } from "../../context/UserTableRowContext";
+import { userUpdateSchema, type UserUpdateType } from "../../user.schema";
 
 export default function UserRoleUpdateForm({
   userId,

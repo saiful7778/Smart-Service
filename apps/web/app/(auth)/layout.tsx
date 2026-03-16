@@ -1,8 +1,11 @@
-import SiteLogo from "@/components/SiteLogo";
-import { env } from "@/configs/env.config";
-import { FieldDescription } from "@workspace/ui/components/field";
 import { type Metadata } from "next";
 import Link from "next/link";
+
+import { FieldDescription } from "@workspace/ui/components/field";
+
+import SiteLogo from "@/components/SiteLogo";
+
+import { env } from "@/configs/env.config";
 
 export const metadata: Metadata = {
   title: {

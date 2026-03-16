@@ -1,10 +1,12 @@
 "use client";
 
+import { useState } from "react";
+
 import { Eye, EyeClosed } from "lucide-react";
+
 import { Button } from "@workspace/ui/components/button";
 import { Input } from "@workspace/ui/components/input";
 import { cn } from "@workspace/ui/lib/utils";
-import { useState } from "react";
 
 function PasswordInput({ className, ...props }: React.ComponentProps<"input">) {
   const [showPassword, setShowPassword] = useState<boolean>(false);

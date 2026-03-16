@@ -1,6 +1,8 @@
-import { emailField, passwordField } from "@workspace/lib";
-import { env } from "@/configs/env.config";
 import z from "zod";
+
+import { emailField, passwordField } from "@workspace/lib";
+
+import { env } from "@/configs/env.config";
 import { MAX_PROFILE_IMAGE_SIZE } from "@/constant";
 
 export const registerSchema = z

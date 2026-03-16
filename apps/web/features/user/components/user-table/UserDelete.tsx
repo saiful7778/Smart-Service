@@ -1,8 +1,10 @@
 "use client";
 
-import { CircleAlertIcon } from "lucide-react";
 import { useState } from "react";
-import { useUserTableRowContext } from "../../context/UserTableRowContext";
+
+import { CircleAlertIcon } from "lucide-react";
+import toast from "react-hot-toast";
+
 import {
   AlertDialog,
   AlertDialogCancel,
@@ -14,8 +16,9 @@ import {
 } from "@workspace/ui/components/alert-dialog";
 import { Button } from "@workspace/ui/components/button";
 import { Input } from "@workspace/ui/components/input";
+
 import { useUserDelete } from "../../api/users.api.hook";
-import toast from "react-hot-toast";
+import { useUserTableRowContext } from "../../context/UserTableRowContext";
 
 export default function UserDelete() {
   const [inputValue, setInputValue] = useState("");

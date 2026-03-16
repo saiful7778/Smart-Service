@@ -1,6 +1,10 @@
 "use client";
 
+import { useId, useMemo } from "react";
+
 import type { Column } from "@tanstack/react-table";
+import { PlusCircle, XCircle } from "lucide-react";
+
 import { Button } from "@workspace/ui/components/button";
 import { Input } from "@workspace/ui/components/input";
 import { Label } from "@workspace/ui/components/label";
@@ -12,8 +16,6 @@ import {
 import { Separator } from "@workspace/ui/components/separator";
 import { Slider } from "@workspace/ui/components/slider";
 import { cn } from "@workspace/ui/lib/utils";
-import { PlusCircle, XCircle } from "lucide-react";
-import { useId, useMemo } from "react";
 
 type RangeValue = [number, number];
 

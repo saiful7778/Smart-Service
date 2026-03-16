@@ -1,3 +1,6 @@
+import { type Metadata } from "next";
+import Link from "next/link";
+
 import {
   Card,
   CardContent,
@@ -6,11 +9,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@workspace/ui/components/card";
+
+import { DEFAULT_AUTH_PATH } from "@/constant";
 import RegisterForm from "@/features/auth/components/forms/RegisterForm";
 import SocialAuth from "@/features/auth/components/SocialAuth";
-import { type Metadata } from "next";
-import Link from "next/link";
-import { DEFAULT_AUTH_PATH } from "@/constant";
 
 export const metadata: Metadata = {
   title: "Register",

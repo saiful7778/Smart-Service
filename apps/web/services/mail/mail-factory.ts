@@ -1,4 +1,5 @@
 import { env } from "@/configs/env.config";
+
 import type { IMailProvider } from "./base-mail";
 import { GmailMail } from "./gmail-mail";
 import { MailhogMail } from "./mailHog-mail";

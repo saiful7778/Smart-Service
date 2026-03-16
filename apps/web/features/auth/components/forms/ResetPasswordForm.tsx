@@ -1,16 +1,21 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
-import { resetPasswordSchema, ResetPasswordType } from "../../auth.schema";
 import toast from "react-hot-toast";
-import { authClient } from "@/lib/better-auth/auth-client";
-import { DEFAULT_UNAUTH_PATH } from "@/constant";
+
+import { ButtonSpinner } from "@workspace/ui/components/button-spinner";
 import { FieldGroup } from "@workspace/ui/components/field";
 import { PasswordInputField } from "@workspace/ui/components/form-fields/PasswordInputField";
-import { ButtonSpinner } from "@workspace/ui/components/button-spinner";
-import { useRouter } from "next/navigation";
+
+import { authClient } from "@/lib/better-auth/auth-client";
+
+import { DEFAULT_UNAUTH_PATH } from "@/constant";
+
+import { resetPasswordSchema, ResetPasswordType } from "../../auth.schema";
 
 export default function ResetPasswordForm({ token }: { token: string }) {
   const [isLoading, setIsLoading] = useState(false);

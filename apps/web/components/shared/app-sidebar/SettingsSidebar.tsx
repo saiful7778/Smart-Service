@@ -1,14 +1,16 @@
 "use client";
 
-import { settingsMenuLinks } from "@/constant/sidebarLinks";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
 import {
   SidebarGroup,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@workspace/ui/components/sidebar";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+
+import { settingsMenuLinks } from "@/constant/sidebarLinks";
 
 export function SettingsSidebar() {
   const pathname = usePathname();

@@ -6,17 +6,18 @@ import {
   uniqueIndex,
   varchar,
 } from "drizzle-orm/pg-core";
-import { db_created_at, db_id, db_updated_at } from "../../utils/db-utils";
-import { UserRoleEnum } from "../enums/db-enums";
 import { relations } from "drizzle-orm/relations";
-import { AccountTable } from "./account.table";
-import { SessionTable } from "./session.table";
 import {
   createInsertSchema,
   createSelectSchema,
   createUpdateSchema,
 } from "drizzle-zod";
 import z from "zod";
+
+import { db_created_at, db_id, db_updated_at } from "../../utils/db-utils";
+import { UserRoleEnum } from "../enums/db-enums";
+import { AccountTable } from "./account.table";
+import { SessionTable } from "./session.table";
 import { UserActivityTable } from "./userActivity.table";
 import { UserEventTable } from "./userEvent.table";
 

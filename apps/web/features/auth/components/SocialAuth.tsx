@@ -1,12 +1,16 @@
 "use client";
 
-import { GoogleIcon } from "@/assets/icons";
+import { useEffect, useState } from "react";
+
+import toast from "react-hot-toast";
+
 import { Button } from "@workspace/ui/components/button";
 import { Portal } from "@workspace/ui/components/portal";
 import { Spinner } from "@workspace/ui/components/spinner";
+
 import { authClient } from "@/lib/better-auth/auth-client";
-import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
+
+import { GoogleIcon } from "@/assets/icons";
 import { ERROR_PAGE_PATH } from "@/constant";
 
 export default function SocialAuth({ redirect }: { redirect: string }) {

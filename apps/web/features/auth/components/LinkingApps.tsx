@@ -1,15 +1,19 @@
 "use client";
 
-import { GoogleIcon } from "@/assets/icons";
-import { DEFAULT_AUTH_PATH, SUPPORTED_OAUTH_PROVIDERS } from "@/constant";
-import { auth } from "@/lib/better-auth/auth";
-import { authClient } from "@/lib/better-auth/auth-client";
-import { ButtonSpinner } from "@workspace/ui/components/button-spinner";
-import { Card, CardContent } from "@workspace/ui/components/card";
-import { Plus, Shield, Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { ComponentProps, ElementType, useState } from "react";
+
+import { Plus, Shield, Trash2 } from "lucide-react";
 import toast from "react-hot-toast";
+
+import { ButtonSpinner } from "@workspace/ui/components/button-spinner";
+import { Card, CardContent } from "@workspace/ui/components/card";
+
+import { auth } from "@/lib/better-auth/auth";
+import { authClient } from "@/lib/better-auth/auth-client";
+
+import { GoogleIcon } from "@/assets/icons";
+import { DEFAULT_AUTH_PATH, SUPPORTED_OAUTH_PROVIDERS } from "@/constant";
 
 type Account = Awaited<ReturnType<typeof auth.api.listUserAccounts>>[number];
 

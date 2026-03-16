@@ -1,5 +1,6 @@
-import { BreadcrumbRoute } from "@/types";
 import type { RouteType } from "next/dist/lib/load-custom-routes";
+
+import { BreadcrumbRoute } from "@/types";
 
 export const DEFAULT_AUTH_PATH: __next_route_internal_types__.RouteImpl<RouteType> =
   "/dashboard";

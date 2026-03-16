@@ -1,6 +1,5 @@
 "use client";
 
-import { useUserTableRowContext } from "../../context/UserTableRowContext";
 import {
   Dialog,
   DialogDescription,
@@ -9,8 +8,11 @@ import {
   DialogStickyHeader,
   DialogTitle,
 } from "@workspace/ui/components/dialog";
-import UserBannedForm from "../forms/UserBannedForm";
+
 import { useAuthStore } from "@/stores/zustand/auth/AuthStoreContext";
+
+import { useUserTableRowContext } from "../../context/UserTableRowContext";
+import UserBannedForm from "../forms/UserBannedForm";
 import UserRoleUpdateForm from "../forms/UserRoleUpdateForm";
 
 export default function UserUpdate() {

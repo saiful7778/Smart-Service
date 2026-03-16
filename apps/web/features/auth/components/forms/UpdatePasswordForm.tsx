@@ -1,15 +1,19 @@
 "use client";
 
-import { Controller, useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { authClient } from "@/lib/better-auth/auth-client";
-import { Field, FieldGroup, FieldLabel } from "@workspace/ui/components/field";
-import { PasswordInputField } from "@workspace/ui/components/form-fields/PasswordInputField";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Controller, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+
 import { ButtonSpinner } from "@workspace/ui/components/button-spinner";
 import { Checkbox } from "@workspace/ui/components/checkbox";
-import { useRouter } from "next/navigation";
+import { Field, FieldGroup, FieldLabel } from "@workspace/ui/components/field";
+import { PasswordInputField } from "@workspace/ui/components/form-fields/PasswordInputField";
+
+import { authClient } from "@/lib/better-auth/auth-client";
+
 import { updatePasswordSchema, UpdatePasswordType } from "../../auth.schema";
 
 export default function UpdatePasswordForm() {

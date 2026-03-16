@@ -1,15 +1,20 @@
 "use client";
 
+import { useState } from "react";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
-import { forgetPasswordSchema, ForgetPasswordType } from "../../auth.schema";
-import { RESET_PASSWORD_PATH } from "@/constant";
 import toast from "react-hot-toast";
-import { authClient } from "@/lib/better-auth/auth-client";
+
+import { ButtonSpinner } from "@workspace/ui/components/button-spinner";
 import { FieldGroup } from "@workspace/ui/components/field";
 import { InputField } from "@workspace/ui/components/form-fields/InputField";
-import { ButtonSpinner } from "@workspace/ui/components/button-spinner";
+
+import { authClient } from "@/lib/better-auth/auth-client";
+
+import { RESET_PASSWORD_PATH } from "@/constant";
+
+import { forgetPasswordSchema, ForgetPasswordType } from "../../auth.schema";
 
 export default function ForgetPasswordForm() {
   const [isLoading, setIsLoading] = useState(false);

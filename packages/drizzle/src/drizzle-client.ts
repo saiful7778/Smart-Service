@@ -1,11 +1,12 @@
 import { drizzle, PostgresJsDatabase } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
+
 import * as schema from "./schemas";
 
 export function createDrizzleClient(
   DATABASE_URL: string,
   NODE_ENV: string,
-  DB_OPERATION_MODE: "seed" | "normal",
+  DB_OPERATION_MODE: "seed" | "normal"
 ): PostgresJsDatabase<typeof schema> {
   const connection = postgres(DATABASE_URL, {
     max: NODE_ENV === "production" ? 20 : 5,

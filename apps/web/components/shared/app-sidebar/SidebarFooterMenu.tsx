@@ -1,12 +1,14 @@
 "use client";
 
+import Link from "next/link";
 import { usePathname } from "next/navigation";
+
 import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@workspace/ui/components/sidebar";
-import Link from "next/link";
+
 import { footerMenuLinks } from "@/constant/sidebarLinks";
 
 export function SidebarFooterMenu() {

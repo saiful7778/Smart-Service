@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState } from "react";
+
 import { ListUserOutput } from "../api/user.router";
 
 interface UserTableRowContextProps {
@@ -8,7 +9,7 @@ interface UserTableRowContextProps {
   setOpenDeleteDialog: React.Dispatch<React.SetStateAction<boolean>>;
   openUpdateDialog: boolean;
   setOpenUpdateDialog: React.Dispatch<React.SetStateAction<boolean>>;
-  userData: ListUserOutput["data"][number];
+  userData: ListUserOutput["data"]["data"][number];
 }
 
 const UserTableRowContext = createContext<UserTableRowContextProps | null>(
@@ -19,7 +20,7 @@ function UserTableRowContextProvider({
   children,
   userData,
 }: {
-  userData: ListUserOutput["data"][number];
+  userData: ListUserOutput["data"]["data"][number];
   children: React.ReactNode;
 }) {
   const [openDeleteDialog, setOpenDeleteDialog] = useState<boolean>(false);

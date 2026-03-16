@@ -1,7 +1,9 @@
-import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
-import { Button } from "@workspace/ui/components/button";
 import type { Metadata } from "next";
+import Link from "next/link";
+
+import { ArrowLeft } from "lucide-react";
+
+import { Button } from "@workspace/ui/components/button";
 
 export const metadata: Metadata = {
   title: "Page Not Found",

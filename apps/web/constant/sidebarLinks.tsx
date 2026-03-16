@@ -1,9 +1,11 @@
-import { SidebarMenuLink } from "@/types";
+import { House, Settings, UsersRound } from "lucide-react";
+
 import {
   UserRoleEnumSchema,
   UserRoleEnumType,
 } from "@workspace/drizzle/client-enums";
-import { House, Settings, UsersRound } from "lucide-react";
+
+import { SidebarMenuLink } from "@/types";
 
 export const mainMenuLinks: Array<{
   groupName: string;

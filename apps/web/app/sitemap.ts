@@ -1,5 +1,6 @@
-import { env } from "@/configs/env.config";
 import { type MetadataRoute } from "next";
+
+import { env } from "@/configs/env.config";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = env.NEXT_PUBLIC_SITE_NAME;

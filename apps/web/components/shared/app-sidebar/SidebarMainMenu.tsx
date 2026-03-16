@@ -1,8 +1,15 @@
 "use client";
 
-import { ChevronRight } from "lucide-react";
-import { SidebarMenuLink } from "@/types";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
+
+import { ChevronRight } from "lucide-react";
+
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@workspace/ui/components/collapsible";
 import {
   SidebarGroup,
   SidebarGroupContent,
@@ -13,14 +20,10 @@ import {
   SidebarMenuSub,
   SidebarMenuSubItem,
 } from "@workspace/ui/components/sidebar";
-import Link from "next/link";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@workspace/ui/components/collapsible";
+
 import { mainMenuLinks } from "@/constant/sidebarLinks";
 import { useAuthStore } from "@/stores/zustand/auth/AuthStoreContext";
+import { SidebarMenuLink } from "@/types";
 
 export function SidebarMainMenu() {
   const pathname = usePathname();

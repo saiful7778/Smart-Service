@@ -1,10 +1,12 @@
 import nodemailer from "nodemailer";
-import { BaseMail } from "./base-mail";
+
 import type {
   GmailMailConfig,
   MailOptions,
   MailSendResult,
 } from "@/types/mail.types";
+
+import { BaseMail } from "./base-mail";
 
 export class GmailMail extends BaseMail {
   constructor(protected readonly config: GmailMailConfig) {

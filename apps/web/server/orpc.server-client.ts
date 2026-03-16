@@ -1,9 +1,11 @@
-import "server-only"
+import { headers } from "next/headers";
 
-import { headers } from "next/headers"
-import { createRouterClient } from "@orpc/server"
-import { router } from "./orpc.router"
-import { db } from "@/lib/db"
+import { createRouterClient } from "@orpc/server";
+import "server-only";
+
+import { db } from "@/lib/db";
+
+import { router } from "./orpc.router";
 
 export const orpcServerClient = createRouterClient(router, {
   /**
@@ -17,6 +19,6 @@ export const orpcServerClient = createRouterClient(router, {
     reqHeaders: await headers(),
     db,
   }),
-})
+});
 
-globalThis.$client = orpcServerClient
+globalThis.$client = orpcServerClient;

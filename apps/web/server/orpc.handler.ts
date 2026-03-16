@@ -1,15 +1,17 @@
-import { router } from "./orpc.router";
-import { OpenAPIHandler } from "@orpc/openapi/fetch";
 import { SmartCoercionPlugin } from "@orpc/json-schema";
-import { ZodToJsonSchemaConverter } from "@orpc/zod/zod4";
+import { OpenAPIHandler } from "@orpc/openapi/fetch";
 import { OpenAPIReferencePlugin } from "@orpc/openapi/plugins";
+import { CompressionPlugin, RPCHandler } from "@orpc/server/fetch";
 import {
   CORSPlugin,
   SimpleCsrfProtectionHandlerPlugin,
 } from "@orpc/server/plugins";
-import pkg from "../package.json";
+import { ZodToJsonSchemaConverter } from "@orpc/zod/zod4";
+
 import { env } from "@/configs/env.config";
-import { CompressionPlugin, RPCHandler } from "@orpc/server/fetch";
+
+import pkg from "../package.json";
+import { router } from "./orpc.router";
 
 export const openAPIHandler = new OpenAPIHandler(router, {
   plugins: [

@@ -1,5 +1,5 @@
-import { Spinner } from "@workspace/ui/components/spinner";
 import { Button, type ButtonProps } from "@workspace/ui/components/button";
+import { Spinner } from "@workspace/ui/components/spinner";
 
 interface ButtonSpinner extends Omit<ButtonProps, "render"> {
   isLoading: boolean;

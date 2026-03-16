@@ -1,6 +1,7 @@
+import { Link, Section, Text } from "@react-email/components";
+
 import { EmailButton } from "@/components/email/EmailButton";
 import { EmailLayout } from "@/components/email/EmailLayout";
-import { Link, Section, Text } from "@react-email/components";
 
 interface ResetPasswordMailProps {
   userName: string;

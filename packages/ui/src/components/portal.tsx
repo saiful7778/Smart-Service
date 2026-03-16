@@ -1,8 +1,9 @@
 "use client";
 
-import { Slot as SlotPrimitive } from "radix-ui";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+
+import { Slot as SlotPrimitive } from "radix-ui";
 
 type SlotProps = React.ComponentProps<typeof SlotPrimitive.Slot>;
 

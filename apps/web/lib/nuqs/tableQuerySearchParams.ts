@@ -1,10 +1,11 @@
-import { DEFAULT_PAGE_INDEX, DEFAULT_PAGE_SIZE } from "@/constant"
 import {
   createLoader,
   parseAsInteger,
   parseAsString,
   parseAsStringLiteral,
-} from "nuqs/server"
+} from "nuqs/server";
+
+import { DEFAULT_PAGE_INDEX, DEFAULT_PAGE_SIZE } from "@/constant";
 
 export const tableQuerySearchParams = createLoader({
   page: parseAsInteger
@@ -22,4 +23,4 @@ export const tableQuerySearchParams = createLoader({
   }),
 
   orderField: parseAsString.withOptions({ clearOnDefault: true }),
-})
+});

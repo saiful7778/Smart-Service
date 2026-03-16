@@ -1,21 +1,22 @@
-import { db_created_at, db_id } from "../../utils/db-utils"
+import { relations } from "drizzle-orm";
 import {
+  foreignKey,
+  index,
+  jsonb,
   pgTable,
   uuid,
   varchar,
-  jsonb,
-  index,
-  foreignKey,
-} from "drizzle-orm/pg-core"
-import { UserEventCategoryEnum } from "../enums/db-enums"
-import { UserTable } from "./user.table"
-import { relations } from "drizzle-orm"
+} from "drizzle-orm/pg-core";
 import {
   createInsertSchema,
   createSelectSchema,
   createUpdateSchema,
-} from "drizzle-zod"
-import z from "zod"
+} from "drizzle-zod";
+import z from "zod";
+
+import { db_created_at, db_id } from "../../utils/db-utils";
+import { UserEventCategoryEnum } from "../enums/db-enums";
+import { UserTable } from "./user.table";
 
 export const UserEventTable = pgTable(
   "user_events",
@@ -45,7 +46,7 @@ export const UserEventTable = pgTable(
       userEvent.category
     ),
   ]
-)
+);
 
 export const UserEventRelations = relations(UserEventTable, ({ one }) => ({
   user: one(UserTable, {
@@ -53,19 +54,19 @@ export const UserEventRelations = relations(UserEventTable, ({ one }) => ({
     references: [UserTable.id],
     relationName: "UserToUserEvent",
   }),
-}))
+}));
 
 export const insertUserEventSchema = createInsertSchema(UserEventTable).omit({
   id: true,
   createdAt: true,
-})
-export const selectUserEventSchema = createSelectSchema(UserEventTable)
+});
+export const selectUserEventSchema = createSelectSchema(UserEventTable);
 export const updateUserEventSchema = createUpdateSchema(UserEventTable).omit({
   id: true,
   createdAt: true,
-})
+});
 
-export type UserEventDataModel = typeof UserEventTable.$inferSelect
-export type InsertUserEvent = z.infer<typeof insertUserEventSchema>
-export type SelectUserEvent = z.infer<typeof selectUserEventSchema>
-export type UpdateUserEvent = z.infer<typeof updateUserEventSchema>
+export type UserEventDataModel = typeof UserEventTable.$inferSelect;
+export type InsertUserEvent = z.infer<typeof insertUserEventSchema>;
+export type SelectUserEvent = z.infer<typeof selectUserEventSchema>;
+export type UpdateUserEvent = z.infer<typeof updateUserEventSchema>;

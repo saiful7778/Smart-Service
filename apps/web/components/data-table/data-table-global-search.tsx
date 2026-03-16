@@ -1,15 +1,17 @@
-"use client"
+"use client";
 
-import { Button } from "@workspace/ui/components/button"
-import { Input } from "@workspace/ui/components/input"
-import { cn } from "@workspace/ui/lib/utils"
-import { RefreshCw, X } from "lucide-react"
-import { useState } from "react"
+import { useState } from "react";
+
+import { RefreshCw, X } from "lucide-react";
+
+import { Button } from "@workspace/ui/components/button";
+import { Input } from "@workspace/ui/components/input";
+import { cn } from "@workspace/ui/lib/utils";
 
 interface DataTableGlobalSearchProps {
-  searchValue: string | null
-  setSearchValue: (value: string | null) => void
-  refresh: () => void
+  searchValue: string | null;
+  setSearchValue: (value: string | null) => void;
+  refresh: () => void;
 }
 
 export default function DataTableGlobalSearch({
@@ -17,27 +19,27 @@ export default function DataTableGlobalSearch({
   setSearchValue,
   refresh,
 }: DataTableGlobalSearchProps) {
-  const [isOnRefresh, setIsOnRefresh] = useState<boolean>(false)
-  const [inputValue, setInputValue] = useState<string>(searchValue ?? "")
+  const [isOnRefresh, setIsOnRefresh] = useState<boolean>(false);
+  const [inputValue, setInputValue] = useState<string>(searchValue ?? "");
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value
-    setSearchValue(value)
-    setInputValue(value)
-  }
+    const value = e.target.value;
+    setSearchValue(value);
+    setInputValue(value);
+  };
 
   const handleReset = () => {
-    setSearchValue(null)
-    setInputValue("")
-  }
+    setSearchValue(null);
+    setInputValue("");
+  };
 
   const handleRefresh = () => {
-    refresh()
-    setIsOnRefresh(true)
+    refresh();
+    setIsOnRefresh(true);
     setTimeout(() => {
-      setIsOnRefresh(false)
-    }, 2000)
-  }
+      setIsOnRefresh(false);
+    }, 2000);
+  };
 
   return (
     <div className="flex items-center gap-4">
@@ -65,5 +67,5 @@ export default function DataTableGlobalSearch({
         <RefreshCw className={cn("size-4", isOnRefresh && "animate-spin")} />
       </Button>
     </div>
-  )
+  );
 }

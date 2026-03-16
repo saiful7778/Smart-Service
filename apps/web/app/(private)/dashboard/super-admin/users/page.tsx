@@ -1,13 +1,15 @@
-import { getAuthUser } from "@/features/auth/data/getAuthUser";
-import { getUserPermission } from "@/features/auth/data/getUserPermission";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
-import { DEFAULT_AUTH_PATH } from "@/constant";
-import { getQueryClient, HydrateClient } from "@/lib/tanstack/query/hydration";
-import { orpcTQClient } from "@/server/orpc.client";
-import UserManagementTable from "@/features/user/components/UserManagementTable";
+
 import { tableQuerySearchParams } from "@/lib/nuqs/tableQuerySearchParams";
+import { getQueryClient, HydrateClient } from "@/lib/tanstack/query/hydration";
+
+import { DEFAULT_AUTH_PATH } from "@/constant";
+import { getAuthUser } from "@/features/auth/data/getAuthUser";
+import { getUserPermission } from "@/features/auth/data/getUserPermission";
+import UserManagementTable from "@/features/user/components/UserManagementTable";
 import UserStats from "@/features/user/components/UserStats";
+import { orpcTQClient } from "@/server/orpc.client";
 
 export const metadata: Metadata = {
   title: "User management",

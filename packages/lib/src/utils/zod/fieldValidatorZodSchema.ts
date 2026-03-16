@@ -1,4 +1,4 @@
-import z from "zod"
+import z from "zod";
 
 export function fieldValidatorZodSchema<
   TKey extends "searchFields",
@@ -8,16 +8,16 @@ export function fieldValidatorZodSchema<
   allowedFields?: readonly TAllowed[]
 ): z.ZodOptional<z.ZodArray<z.ZodString>> {
   const hasRestrictions =
-    Array.isArray(allowedFields) && allowedFields.length > 0
+    Array.isArray(allowedFields) && allowedFields.length > 0;
 
   return z
     .array(z.string())
     .refine(
       (values) => {
-        if (!hasRestrictions || !values) return true
+        if (!hasRestrictions || !values) return true;
         return values.every((value) =>
           allowedFields.includes(value as TAllowed)
-        )
+        );
       },
       {
         message: hasRestrictions
@@ -27,5 +27,5 @@ export function fieldValidatorZodSchema<
           : `Each value in '${key}' must be one of: <no allowed fields provided>`,
       }
     )
-    .optional()
+    .optional();
 }
